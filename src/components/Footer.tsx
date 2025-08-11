@@ -46,7 +46,7 @@ export default function Footer() {
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
               <FaMapMarkerAlt className="text-green-600 mt-1" />
-              <span><b>Chennai Address: </b>{setting[0]?.Address}</span>
+              <span><b></b>{setting[0]?.Address}</span>
             </div>
             {/* <div className="flex items-start gap-2">
               <FaMapMarkerAlt className="text-green-600 mt-1" />
