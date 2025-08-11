@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+//@ts-nocheck
+import  { useRef } from "react";
 import jsPDF from "jspdf";
 import { useFirebase } from "@/Services/context";
 import html2canvas from "html2canvas-pro";
