@@ -747,6 +747,8 @@ export const EditProduct=()=>{
   const filteredProducts = products.filter((item) => {
     const matchesSearch = item.productName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "" || item.CategoryName === selectedCategory;
+    console.log("Selected Category:", selectedCategory);
+    console.log("matchesSearch:", matchesSearch, "matchesCategory:", matchesCategory);
     return matchesSearch && matchesCategory;
   });
 
@@ -819,7 +821,7 @@ export const EditProduct=()=>{
       setLoading(false);
     }
   };
-
+  if(!Categories) return;
   return (
     <Dialog>
       <DialogTrigger>
@@ -838,17 +840,17 @@ export const EditProduct=()=>{
             className="mb-4"
           />
           }
-          {/* {!selectedProduct&&
+          {!selectedProduct&&
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="w-full max-w-xs p-2 border border-gray-300 rounded mb-4"
           >
             <option value="">All Categories</option>
-            {Array.isArray(Categories) &&
-              Categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
+            {
+               Object.values(Categories)?.map((category) => (
+                <option key={category.id} value={category.generalName}>
+                  {category.generalName}
                 </option>
               ))}
           </select>
@@ -865,7 +867,7 @@ export const EditProduct=()=>{
 //   ))}
 // </select>
 
-          } */}
+          }
         </DialogHeader>
 
         {/* Scrollable filtered product list */}
