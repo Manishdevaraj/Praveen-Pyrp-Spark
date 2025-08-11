@@ -30,7 +30,7 @@ import { useLocation } from "react-router-dom";
 import Unauthorized from "./pages/Unauthorized"; 
 import RequireAdmin from './components/RequireAdmin';
 import SocialNavBar from "./components/SocialNav";
-import Modal from "./components/Modal"
+// import Modal from "./components/Modal"
 import { EditSettings } from "./components/AdminProduct"
 // import Modal from './components/Modal'
 
@@ -146,7 +146,7 @@ const App = () => {
 
   return (
     <>
-      <Modal isOpen={showModal} onClose={handleCloseModal} />
+      {/* <Modal isOpen={showModal} onClose={handleCloseModal} /> */}
       <MainNav onProfileClick={onProfileClick} />
       <SubNav />
       <SocialNavBar/>

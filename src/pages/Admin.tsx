@@ -23,6 +23,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import toast from "react-hot-toast";
 import { generateOrderPdf } from "@/components/utility/generateOrderPDF";
 import { storage } from "@/Services/Firebase.config";
+import OrderDetailPDF from "@/components/OrderPdfToDownload";
 
 const Admin = () => {
   const [orders, setOrders] = useState([]);
@@ -703,13 +704,12 @@ const updateOrder=async()=>{
                     <FaPrint />
                     Print
                   </button>
-                  {/* <button
-                   onClick={handleGenerateAndSharePDF}
+                  <button
+                  
                     className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2 cursor-pointer"
                   >
-                    <FaShare />
-                    Share
-                  </button> */}
+                    <OrderDetailPDF order={selectedOrder}  />
+                  </button>
                 </div>
               </div> 
           <div>
