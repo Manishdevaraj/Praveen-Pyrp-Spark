@@ -35,7 +35,7 @@ export default function Footer() {
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
     <span className="text-black">SRI VENEKATESH</span>{' '}
-    <span className="text-purple-600">TRADERS</span>
+    <span className="text-cyan-600">TRADERS</span>
   </p>
 </div>
 

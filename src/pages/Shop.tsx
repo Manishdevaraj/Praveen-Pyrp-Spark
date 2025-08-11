@@ -154,7 +154,7 @@ export const ProductTableRow = React.memo(({ product }) => {
                   </div>
                 ) : (
                   <Button
-                    className="bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] text-white text-xs px-3 py-1"
+                    className="bg-gradient-to-br from-cyan-600 to-indigo-900 text-white text-xs px-3 py-1"
                     onClick={() => toggleCart(product)}
                   >
                     Add
@@ -236,7 +236,7 @@ export const ProductTableRow = React.memo(({ product }) => {
               </div>
             ) : (
               <Button
-                className="bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] text-white text-sm"
+                className="bg-gradient-to-br from-cyan-600 to-indigo-900 text-white text-sm"
                 onClick={() => toggleCart(product)}
               >
                 Add
@@ -518,7 +518,7 @@ const Shop = ({isStandardCrackers}) => {
           <div className="flex items-center gap-3 flex-wrap overflow-y-auto">
             <Drawer>
               <DrawerTrigger asChild>
-                <Button className="flex gap-2 items-center bg-emerald-500 text-white">
+                <Button className="flex gap-2 items-center bg-gradient-to-br from-[#00c853] to-[#b2ff59] text-white">
                   <FaFilter /> Filter
                 </Button>
               </DrawerTrigger>
@@ -613,7 +613,7 @@ const Shop = ({isStandardCrackers}) => {
             <button
               onClick={() => handleViewChange("grid")}
               className={`border p-2 rounded ${
-                viewMode === "grid" ? "bg-emerald-200" : "bg-white"
+                viewMode === "grid" ? "bg-gradient-to-br from-[#00c853] to-[#b2ff59]" : "bg-white"
               }`}
             >
               <FaThLarge />
@@ -621,7 +621,7 @@ const Shop = ({isStandardCrackers}) => {
             <button
               onClick={() => handleViewChange("list")}
               className={`border p-2 rounded ${
-                viewMode === "table" ? "bg-emerald-200" : "bg-white"
+                viewMode === "table" ? "bg-gradient-to-br from-[#00c853] to-[#b2ff59]" : "bg-white"
               }`}
             >
               <FaTable />
@@ -637,15 +637,15 @@ const Shop = ({isStandardCrackers}) => {
                   {/* Category Heading */}
                     <div className="mb-4">
                       {/* Desktop View */}
-                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] border border-gray-300 rounded-md shadow px-4 py-2.5">
-                        <h2 className="text-base font-semibold text-gray-800 tracking-wide">
+                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-br from-cyan-600 to-indigo-900 border border-gray-300 rounded-md shadow px-4 py-2.5 text-white">
+                        <h2 className="text-base font-semibold text-white tracking-wide">
                           {category}
                         </h2>
                       </div>
 
                       {/* Mobile View */}
-                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] border-b border-gray-300 rounded px-3 py-2 shadow-sm">
-                        <h2 className="text-sm font-medium text-gray-800 tracking-wide">
+                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-br from-cyan-600 to-indigo-900 border-b border-gray-300 rounded px-3 py-2 shadow-sm text-white">
+                        <h2 className="text-sm font-medium text-white tracking-wide">
                           {category}
                         </h2>
                       </div>
@@ -682,18 +682,18 @@ const Shop = ({isStandardCrackers}) => {
                       ([category, products]) => (
                         <React.Fragment key={category}>
                           {/* Desktop Table Category Row */}
-                          <tr className="hidden sm:table-row bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]">
+                          <tr className="hidden sm:table-row bg-gradient-to-br from-cyan-600 to-indigo-900">
                             <td colSpan={6} className="px-4 py-3 text-center border border-gray-300 rounded-md shadow">
-                              <span className="text-base font-semibold text-gray-900 tracking-wide">
+                              <span className="text-base font-semibold text-white tracking-wide">
                                 {category}
                               </span>
                             </td>
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]">
+                          <tr className="block sm:hidden border-b bg-gradient-to-br from-cyan-600 to-indigo-900">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
-                              <span className="text-sm font-medium text-gray-900 tracking-wide">
+                              <span className="text-sm font-medium text-white tracking-wide">
                                 {category}
                               </span>
                             </td>
