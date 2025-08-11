@@ -60,23 +60,23 @@ const Contactus = () => {
     <>
       <Helmet>
         <title>
-          Contact Vani Crackers 
+          Contact Sri Venkatesh Traders
         </title>
         <meta
           name="description"
-          content="Reach out to Vani Crackers for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
+          content="Reach out to Sri Venkatesh Traders for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
         />
         <meta
           name="keywords"
-          content="contact sivakasi crackers, Vani Crackers contact, fireworks supplier phone, email crackers support"
+          content="contact sivakasi crackers, Sri Venkatesh Traders contact, fireworks supplier phone, email crackers support"
         />
-        <meta property="og:title" content="Contact Vani Crackers" />
+        <meta property="og:title" content="Contact Sri Venkatesh Traders" />
         <meta
           property="og:description"
-          content="Have questions or want to place a bulk order? Contact Vani Crackers, your fireworks expert from Sivakasi."
+          content="Have questions or want to place a bulk order? Contact Sri Venkatesh Traders, your fireworks expert from Sivakasi."
         />
         <meta property="og:image" content="/meta/contact-us.jpg" />
-        <meta property="og:url" content="https://VaniCrackers.com/contactus" />
+        <meta property="og:url" content="https://srivenkateshtraders.in/contactus" />
       </Helmet>
       <section className="bg-gray-50 min-h-screen pt-20 pb-16 px-4 md:px-10">
         {/* Header Section */}
@@ -122,7 +122,7 @@ const Contactus = () => {
             <Mail className="mx-auto mb-3 text-emerald-500" size={32} />
             <h3 className="text-xl font-semibold mb-2">Mail & Website</h3>
             <p className="text-gray-600">{setting[0]?.EmailID}</p>
-            <p className="text-gray-600">www.VaniCrackers.com</p>
+            <p className="text-gray-600">www.srivenkateshtraders.in</p>
           </div>
 
           {/* Address Card */}

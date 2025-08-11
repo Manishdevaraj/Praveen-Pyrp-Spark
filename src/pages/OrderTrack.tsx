@@ -58,9 +58,9 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   let ordersRef;
 
   if (user) {
-    ordersRef = ref(database, `VTS/CustomerOrder/${user.uid}`);
+    ordersRef = ref(database, `SVT/CustomerOrder/${user.uid}`);
   } else if (guestPhone.length === 10) {
-    ordersRef = ref(database, `VTS/CustomerOrder/${guestPhone}`);
+    ordersRef = ref(database, `SVT/CustomerOrder/${guestPhone}`);
   } else {
     return;
   }
@@ -80,25 +80,25 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   return (
     <>
       <Helmet>
-        <title>Track Your Order | Vani Crackers Online</title>
+        <title>Track Your Order | Sri Venkatesh Traders Online</title>
         <meta
           name="description"
-          content="Track your Vani Crackers order in real-time. Get shipping status and delivery updates instantly."
+          content="Track your Sri Venkatesh Traders order in real-time. Get shipping status and delivery updates instantly."
         />
         <meta
           name="keywords"
-          content="track crackers order, fireworks delivery status, order tracking sivakasi, Vani Crackers shipping"
+          content="track crackers order, fireworks delivery status, order tracking sivakasi, Sri Venkatesh Traders shipping"
         />
         <meta
           property="og:title"
-          content="Track Your Vani Crackers Order"
+          content="Track Your Sri Venkatesh Traders Order"
         />
         <meta
           property="og:description"
-          content="Easily track your fireworks order placed at Vani Crackers. Quick delivery from Sivakasi."
+          content="Easily track your fireworks order placed at Sri Venkatesh Traders. Quick delivery from Sivakasi."
         />
         <meta property="og:image" content="/meta/track-order.jpg" />
-        <meta property="og:url" content="https://VaniCrackers.com/track-order" />
+        <meta property="og:url" content="https://srivenkateshtraders.in/track-order" />
       </Helmet>
       <section className="min-h-screen bg-gray-50 p-4">
         <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-6 md:p-10 space-y-10">

@@ -77,7 +77,7 @@ const OrderPdfToDownload = ({ order }: { order: any }) => {
           />
              </div>
           <h1 style={{ margin: 0, fontSize: "24px", color: "#333" }}>
-            Vani Traders
+            Sri Venkatesh Traders
           </h1>
           <p style={{ margin: "5px 0", fontSize: "14px", color: "#555" }}>
             {setting[0]?.Address}
@@ -182,7 +182,7 @@ const OrderPdfToDownload = ({ order }: { order: any }) => {
 
         {/* Footer */}
         <p style={{ textAlign: "center", marginTop: "30px", fontSize: "13px" }}>
-          Thank you for your purchase! – <strong>Vani Traders</strong>
+          Thank you for your purchase! – <strong>Sri Venkatesh Traders</strong>
         </p>
       </div>
     </div>

@@ -491,7 +491,7 @@ const Shop = ({isStandardCrackers}) => {
       <div className="min-h-screen px-4 md:px-10 py-10 bg-gray-50">
         <Helmet>
           <title>
-            Shop Crackers Online | Vani Crackers Sivakasi
+            Shop Crackers Online |  Sri Venkatesh Traders Sivakasi
           </title>
           <meta
             name="description"
@@ -510,7 +510,7 @@ const Shop = ({isStandardCrackers}) => {
             content="Premium Sivakasi crackers at wholesale price. Shop safe and eco-friendly fireworks online now!"
           />
           <meta property="og:image" content="/meta/shop-banner.jpg" />
-          <meta property="og:url" content="https://VaniCrackers.com/shop" />
+          <meta property="og:url" content="https://srivenkateshtraders.in/shop" />
         </Helmet>
         <CartSummary />
 

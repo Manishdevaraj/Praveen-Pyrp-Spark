@@ -39,12 +39,12 @@ const OrderDetailPrint: React.FC<OrderDetailPrintProps> = ({
       >
         <img
           src="/logo.png"
-          alt="Vani Logo"
+          alt="Sri Venkatesh Traders Logo"
           style={{ width: "80px", marginRight: "20px" }}
         />
         <div>
           <h1 style={{ margin: 0, fontSize: "24px" }}>
-            Vani Traders
+            Sri Venkatesh Traders
           </h1>
           <p style={{ margin: 0, color: "#555", lineHeight: "1.5" }}>
             {setting[0]?.Address}
@@ -148,7 +148,7 @@ const OrderDetailPrint: React.FC<OrderDetailPrintProps> = ({
 
       {/* ✅ Footer */}
       <p style={{ textAlign: "center", marginTop: "40px" }}>
-        Thank you for your purchase! – <strong>Vani Traders</strong>
+        Thank you for your purchase! – <strong>Sri Venkatesh Traders</strong>
       </p>
     </div>
   );

@@ -70,7 +70,7 @@ const Register = ({ isDialog = false }) => {
           <div className="text-center mb-6">
             <img
               src="/logo.png"
-              alt="Vani Crackers"
+              alt="Sri Venkatesh Traders"
               className="mx-auto h-20"
             />
           </div>

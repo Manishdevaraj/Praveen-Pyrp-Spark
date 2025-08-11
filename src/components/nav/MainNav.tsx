@@ -38,20 +38,20 @@ const MainNav = ({onProfileClick}) => {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Vani Traders Logo"
+    alt="Sri Venkatesh Traders"
     className="h-12 w-12 object-contain"
   />
 
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">VANI</span>{' '}
-    <span className="text-purple-600">TRADERS</span>
+    <span className="text-black">Sri Venkatesh</span>{' '}
+    <span className="text-[#00f2fe]">TRADERS</span>
   </p>
 </div>
 
 
         {/* Search */}
-        <div className="flex w-full md:w-1/2 border border-purple-600 rounded overflow-hidden">
+        <div className="flex w-full md:w-1/2 border border-[#00f2fe] rounded overflow-hidden">
           <input
             type="text"
             placeholder="Search for items..."
@@ -61,7 +61,7 @@ const MainNav = ({onProfileClick}) => {
           />
           <button
             onClick={handleSearch}
-            className="px-4 py-2 bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]  text-white"
+            className="px-4 py-2 bg-gradient-to-r from-[#4facfe] to-[#00f2fe]  text-white"
           >
             <FaSearch />
           </button>
@@ -190,7 +190,7 @@ const MainNav = ({onProfileClick}) => {
           >
             <FaShoppingCart />
             <span className="whitespace-nowrap">Cart</span>
-            <span className="absolute -top-2 -right-3 bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]  text-white text-xs px-2 py-0.5 rounded-full">
+            <span className="absolute -top-2 -right-3 bg-gradient-to-r from-[#4facfe] to-[#00f2fe]  text-white text-xs px-2 py-0.5 rounded-full">
               {Object.keys(cartItems).length}
             </span>
           </div>
