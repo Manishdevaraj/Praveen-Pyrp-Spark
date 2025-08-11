@@ -49,11 +49,12 @@ const HeroCarousel = () => {
   return (
     <Carousel setApi={setApi} opts={{ loop: true }} className="w-full relative">
       <CarouselContent className="flex">
-        {(isMobileView ? setting[0]?.bannerImages2 : setting[0]?.bannerImages)?.map((url, index) => (
+        {(isMobileView ? setting[0]?.bannerMobile
+ : setting[0]?.bannerDesktop)?.map((url, index) => (
           <CarouselItem key={index}>
             <div
                className={` relative w-full overflow-hidden rounded-md group
-               ${isMobileView ? "aspect-[3/1]" : "aspect-[3/1]"}
+               ${isMobileView ? "aspect-[2/1]" : "aspect-[3/1]"}
              `} >
               <img
                 src={url}
