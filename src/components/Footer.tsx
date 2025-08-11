@@ -48,10 +48,10 @@ export default function Footer() {
               <FaMapMarkerAlt className="text-green-600 mt-1" />
               <span><b>Chennai Address: </b>{setting[0]?.Address}</span>
             </div>
-            <div className="flex items-start gap-2">
+            {/* <div className="flex items-start gap-2">
               <FaMapMarkerAlt className="text-green-600 mt-1" />
               <span><b>Sivakasi Address: </b> 2/154 4th cross street, Chinnakam patti, Sivakasi to sattur road, Sivakasi</span>
-            </div>
+            </div> */}
             <div className="flex items-start gap-2">
               <FaEnvelope className="text-green-600 mt-1" />
               <span>{setting[0]?.EmailID}</span>
