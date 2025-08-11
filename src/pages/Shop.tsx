@@ -644,7 +644,7 @@ const Shop = ({isStandardCrackers}) => {
                       </div>
 
                       {/* Mobile View */}
-                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-r from-yellow-200 via-amber-300 to-yellow-200 border-b border-gray-300 rounded px-3 py-2 shadow-sm">
+                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] border-b border-gray-300 rounded px-3 py-2 shadow-sm">
                         <h2 className="text-sm font-medium text-gray-800 tracking-wide">
                           {category}
                         </h2>
@@ -682,7 +682,7 @@ const Shop = ({isStandardCrackers}) => {
                       ([category, products]) => (
                         <React.Fragment key={category}>
                           {/* Desktop Table Category Row */}
-                          <tr className="hidden sm:table-row bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300">
+                          <tr className="hidden sm:table-row bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]">
                             <td colSpan={6} className="px-4 py-3 text-center border border-gray-300 rounded-md shadow">
                               <span className="text-base font-semibold text-gray-900 tracking-wide">
                                 {category}
@@ -691,7 +691,7 @@ const Shop = ({isStandardCrackers}) => {
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b bg-gradient-to-r from-yellow-200 via-amber-300 to-yellow-200">
+                          <tr className="block sm:hidden border-b bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b]">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
                               <span className="text-sm font-medium text-gray-900 tracking-wide">
                                 {category}
