@@ -510,7 +510,7 @@ const Shop = ({isStandardCrackers}) => {
             content="Premium Sivakasi crackers at wholesale price. Shop safe and eco-friendly fireworks online now!"
           />
           <meta property="og:image" content="/meta/shop-banner.jpg" />
-          <meta property="og:url" content="https://ChennaiSparkleCrackers.com/shop" />
+          <meta property="og:url" content="https://VaniCrackers.com/shop" />
         </Helmet>
         <CartSummary />
 
@@ -637,7 +637,7 @@ const Shop = ({isStandardCrackers}) => {
                   {/* Category Heading */}
                     <div className="mb-4">
                       {/* Desktop View */}
-                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-300 border border-gray-300 rounded-md shadow px-4 py-2.5">
+                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-r from-[#b482f0]  to-[#ff3b3b] border border-gray-300 rounded-md shadow px-4 py-2.5">
                         <h2 className="text-base font-semibold text-gray-800 tracking-wide">
                           {category}
                         </h2>

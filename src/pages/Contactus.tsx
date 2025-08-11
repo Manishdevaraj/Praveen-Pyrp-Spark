@@ -76,7 +76,7 @@ const Contactus = () => {
           content="Have questions or want to place a bulk order? Contact Vani Crackers, your fireworks expert from Sivakasi."
         />
         <meta property="og:image" content="/meta/contact-us.jpg" />
-        <meta property="og:url" content="https://ChennaiSparkleCrackers.com/contactus" />
+        <meta property="og:url" content="https://VaniCrackers.com/contactus" />
       </Helmet>
       <section className="bg-gray-50 min-h-screen pt-20 pb-16 px-4 md:px-10">
         {/* Header Section */}
@@ -122,7 +122,7 @@ const Contactus = () => {
             <Mail className="mx-auto mb-3 text-emerald-500" size={32} />
             <h3 className="text-xl font-semibold mb-2">Mail & Website</h3>
             <p className="text-gray-600">{setting[0]?.EmailID}</p>
-            <p className="text-gray-600">www.ChennaiSparkleCrackers.com</p>
+            <p className="text-gray-600">www.VaniCrackers.com</p>
           </div>
 
           {/* Address Card */}
