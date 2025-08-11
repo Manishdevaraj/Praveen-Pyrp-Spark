@@ -30,8 +30,8 @@ import { useLocation } from "react-router-dom";
 import Unauthorized from "./pages/Unauthorized"; 
 import RequireAdmin from './components/RequireAdmin';
 import SocialNavBar from "./components/SocialNav";
+import Modal from "./components/Modal"
 // import Modal from './components/Modal'
-import Modal from "./components/modal";
 
 const App = () => {
   const { setting, products, cartItems, TAGS, user, getUser, setdbUser, userloading } = useFirebase();
