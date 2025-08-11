@@ -570,7 +570,7 @@ const Shop = ({isStandardCrackers}) => {
                   <div>
                     <h2 className="font-semibold text-lg">Categories</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-2">
-                      {Array.isArray(multiBrandCategories)&&!isStandardCrackers &&
+                      {/* {Array.isArray(multiBrandCategories)&&!isStandardCrackers &&
                         multiBrandCategories.map((category) => (
                           <button
                             key={category}
@@ -584,7 +584,7 @@ const Shop = ({isStandardCrackers}) => {
                           >
                             {category}
                           </button>
-                        ))}
+                        ))} */}
                         {Array.isArray(standardCategories)&&isStandardCrackers &&
                         standardCategories.map((category) => (
                           <button

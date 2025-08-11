@@ -234,29 +234,18 @@ useEffect(() => {
     setCategories(data);
     if (data) {
       const standard: string[] = [];
-      const multiBrand: string[] = [];
+     
 
       Object.values(data).forEach((item: any) => {
         if (!item?.generalName) return;
 
-        if (
-          item.priceListName === "STANDARD CRACKERS" ||
-          item.priceListName === ""
-        ) {
           standard.push(item.generalName);
-        }
-
-        if (
-          item.priceListName === "ONLINE PRICE LIST" ||
-          item.priceListName === ""
-        ) {
-          multiBrand.push(item.generalName);
-        }
+       
       });
 
       // Remove duplicates if "" is causing overlaps
       setStandardCategories([...new Set(standard)]);
-      setMultiBrandCategories([...new Set(multiBrand)]);
+      
     } else {
       setStandardCategories([]);
       setMultiBrandCategories([]);

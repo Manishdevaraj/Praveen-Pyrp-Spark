@@ -31,6 +31,7 @@ import Unauthorized from "./pages/Unauthorized";
 import RequireAdmin from './components/RequireAdmin';
 import SocialNavBar from "./components/SocialNav";
 import Modal from "./components/Modal"
+import { EditSettings } from "./components/AdminProduct"
 // import Modal from './components/Modal'
 
 const App = () => {
@@ -165,6 +166,7 @@ const App = () => {
         <Route path='/admin' element={<RequireAdmin><Admin /></RequireAdmin>} />
         <Route path='/product-admin' element={<ProductAdministration /> } />
         <Route path='/category-admin' element={<RequireAdmin> <CategoryAdministration /> </RequireAdmin>} />
+        <Route path='/admin-settings' element={<RequireAdmin> <EditSettings /> </RequireAdmin>} />
         <Route path="/unauthorized" element={<Unauthorized />} />
       </Routes>
 

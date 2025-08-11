@@ -1276,192 +1276,219 @@ export const EditSettings = () => {
   if (!settings) return <p>Loading...</p>;
 
 return (
-  <Dialog>
-    <DialogTrigger>
-      <Button className="text-sm mb-2 cursor-pointer">Edit Settings</Button>
-    </DialogTrigger>
-    <DialogContent className="max-h-[90vh] overflow-y-auto p-4 space-y-4">
-      <div className="grid gap-4">
-        {/* Basic Info */}
-        {[
-          ["CompanyName", "Company Name"],
-          ["Address", "Address"],
-          ["CellNO", "Cell No"],
-          ["OfficeNo", "Office No"],
-          ["EmailID", "Email ID"],
-          ["GSTIN", "GSTIN"],
-          ["WhatsappNo", "WhatsappNo"],
-        ].map(([field, label]) => (
-          <div key={field} className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
-            <input
-              className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder={label}
-              value={formData[field] || ""}
-              onChange={(e) => handleChange(field, e.target.value)}
-            />
-          </div>
-        ))}
+ 
+    <div className="max-h-[90vh] overflow-y-auto p-4 space-y-6 bg-gray-50 rounded-lg shadow-inner">
 
-        {/* Min Order Value */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm font-medium text-gray-700">Minimum Order Value</label>
+  {/* BASIC INFO */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Basic Info</h2>
+    <div className="grid gap-4">
+      {[
+        ["CompanyName", "Company Name"],
+        ["Address", "Address"],
+        ["CellNO", "Cell No"],
+        ["OfficeNo", "Office No"],
+        ["EmailID", "Email ID"],
+        ["GSTIN", "GSTIN"],
+        ["WhatsappNo", "Whatsapp No"],
+      ].map(([field, label]) => (
+        <div key={field} className="flex flex-col">
+          <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>
           <input
             className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            type="number"
-            value={formData.MinOrderValue || ""}
-            onChange={(e) => handleChange("MinOrderValue", Number(e.target.value))}
+            placeholder={label}
+            value={formData[field] || ""}
+            onChange={(e) => handleChange(field, e.target.value)}
           />
         </div>
+      ))}
+    </div>
+  </div>
 
-        {/* Alerts */}
-        {[
-          ["AlertMessage", "Alert Message"],
-          ["AlertMessage1", "Alert Message 1"],
-        ].map(([field, label]) => (
-          <div key={field} className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
-            <textarea
-              className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData[field] || ""}
-              onChange={(e) => handleChange(field, e.target.value)}
-            />
-          </div>
-        ))}
-
-        {/* Social Links */}
-        {[
-          ["YouTube", "YouTube URL"],
-          ["Instagram", "Instagram URL"],
-          ["Twitter", "Twitter URL"],
-          ["PlayStore", "Play Store URL"],
-          ["Facebook", "Facebook URL"],
-        ].map(([field, label]) => (
-          <div key={field} className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
-            <input
-              className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData[field] || ""}
-              onChange={(e) => handleChange(field, e.target.value)}
-            />
-          </div>
-        ))}
-
-        {/* Location */}
-        {[
-          ["latitude", "Latitude"],
-          ["longitude", "Longitude"],
-        ].map(([field, label]) => (
-          <div key={field} className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
-            <input
-              className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="number"
-              value={formData[field] || ""}
-              onChange={(e) => handleChange(field, Number(e.target.value))}
-            />
-          </div>
-        ))}
-
-        {/* Order Contacts */}
-        {[
-          ["orderContactNo1", "Order Contact No 1"],
-          ["orderContactNo2", "Order Contact No 2"],
-        ].map(([field, label]) => (
-          <div key={field} className="flex flex-col">
-            <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
-            <input
-              className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData[field] || ""}
-              onChange={(e) => handleChange(field, e.target.value)}
-            />
-          </div>
-        ))}
-
-        {/* PDF Upload */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm font-medium text-gray-700">Upload PDF</label>
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={async (e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                const url = await handleFileUpload(file, `VTS/pdf/${file.name}`);
-                handleChange("pdfURL", url);
-              }
-            }}
-          />
-          {formData.pdfURL && (
-            <p className="text-sm text-blue-600 mt-1">
-              Current PDF:{" "}
-              <a href={formData.pdfURL} target="_blank" rel="noopener noreferrer">
-                View
-              </a>
-            </p>
-          )}
-        </div>
-
-        {/* Desktop Banners */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm font-medium text-gray-700">Desktop Banners</label>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={(e) => {
-              if (e.target.files) handleBannerUpload(e.target.files, "desktop");
-            }}
-          />
-          <div className="flex flex-wrap gap-2 mt-2">
-            {(formData.bannerDesktop || []).map((url: string, idx: number) => (
-              <div key={idx} className="relative">
-                <img src={url} alt="desktop banner" className="w-32 h-20 object-cover rounded" />
-                <button
-                  type="button"
-                  onClick={() => handleRemoveBanner(url, "desktop")}
-                  className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Banners */}
-        <div className="flex flex-col">
-          <label className="mb-1 text-sm font-medium text-gray-700">Mobile Banners</label>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={(e) => {
-              if (e.target.files) handleBannerUpload(e.target.files, "mobile");
-            }}
-          />
-          <div className="flex flex-wrap gap-2 mt-2">
-            {(formData.bannerMobile || []).map((url: string, idx: number) => (
-              <div key={idx} className="relative">
-                <img src={url} alt="mobile banner" className="w-20 h-32 object-cover rounded" />
-                <button
-                  type="button"
-                  onClick={() => handleRemoveBanner(url, "mobile")}
-                  className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+  {/* MIN ORDER & ALERTS */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Orders & Alerts</h2>
+    <div className="grid gap-4">
+      {/* Min Order */}
+      <div className="flex flex-col">
+        <label className="mb-1 text-sm font-medium text-gray-600">Minimum Order Value</label>
+        <input
+          type="number"
+          className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={formData.MinOrderValue || ""}
+          onChange={(e) => handleChange("MinOrderValue", Number(e.target.value))}
+        />
       </div>
 
-      <Button onClick={handleSave} disabled={loading} className="w-full mt-4">
-        {loading ? "Saving..." : "Save Settings"}
-      </Button>
-    </DialogContent>
-  </Dialog>
+      {/* Alerts */}
+      {[
+        ["AlertMessage", "Alert Message"],
+        ["AlertMessage1", "Alert Message 1"],
+      ].map(([field, label]) => (
+        <div key={field} className="flex flex-col">
+          <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>
+          <textarea
+            className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={formData[field] || ""}
+            onChange={(e) => handleChange(field, e.target.value)}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* SOCIAL LINKS */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Social Links</h2>
+    <div className="grid gap-4">
+      {[
+        ["YouTube", "YouTube URL"],
+        ["Instagram", "Instagram URL"],
+        ["Twitter", "Twitter URL"],
+        ["PlayStore", "Play Store URL"],
+        ["Facebook", "Facebook URL"],
+      ].map(([field, label]) => (
+        <div key={field} className="flex flex-col">
+          <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>
+          <input
+            className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={formData[field] || ""}
+            onChange={(e) => handleChange(field, e.target.value)}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* LOCATION */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Location</h2>
+    <div className="grid gap-4">
+      {[
+        ["latitude", "Latitude"],
+        ["longitude", "Longitude"],
+      ].map(([field, label]) => (
+        <div key={field} className="flex flex-col">
+          <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>
+          <input
+            type="number"
+            className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={formData[field] || ""}
+            onChange={(e) => handleChange(field, Number(e.target.value))}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* ORDER CONTACTS */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Order Contacts</h2>
+    <div className="grid gap-4">
+      {[
+        ["orderContactNo1", "Order Contact No 1"],
+        ["orderContactNo2", "Order Contact No 2"],
+      ].map(([field, label]) => (
+        <div key={field} className="flex flex-col">
+          <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>
+          <input
+            className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={formData[field] || ""}
+            onChange={(e) => handleChange(field, e.target.value)}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* PDF UPLOAD */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">PDF Upload</h2>
+    <input
+      type="file"
+      accept="application/pdf"
+      onChange={async (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+          const url = await handleFileUpload(file, `VTS/pdf/${file.name}`);
+          handleChange("pdfURL", url);
+        }
+      }}
+    />
+    {formData.pdfURL && (
+      <p className="text-sm text-blue-600 mt-1">
+        Current PDF:{" "}
+        <a href={formData.pdfURL} target="_blank" rel="noopener noreferrer">
+          View
+        </a>
+      </p>
+    )}
+  </div>
+
+  {/* DESKTOP BANNERS */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Desktop Banners</h2>
+    <input
+      type="file"
+      multiple
+      accept="image/*"
+      onChange={(e) => {
+        if (e.target.files) handleBannerUpload(e.target.files, "desktop");
+      }}
+    />
+    <div className="flex flex-wrap gap-2 mt-2">
+      {(formData.bannerDesktop || []).map((url: string, idx: number) => (
+        <div key={idx} className="relative">
+          <img src={url} alt="desktop banner" className="w-32 h-20 object-cover rounded" />
+          <button
+            type="button"
+            onClick={() => handleRemoveBanner(url, "desktop")}
+            className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* MOBILE BANNERS */}
+  <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Mobile Banners</h2>
+    <input
+      type="file"
+      multiple
+      accept="image/*"
+      onChange={(e) => {
+        if (e.target.files) handleBannerUpload(e.target.files, "mobile");
+      }}
+    />
+    <div className="flex flex-wrap gap-2 mt-2">
+      {(formData.bannerMobile || []).map((url: string, idx: number) => (
+        <div key={idx} className="relative">
+          <img src={url} alt="mobile banner" className="w-20 h-32 object-cover rounded" />
+          <button
+            type="button"
+            onClick={() => handleRemoveBanner(url, "mobile")}
+            className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* SAVE BUTTON */}
+  <Button
+    onClick={handleSave}
+    disabled={loading}
+    className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg"
+  >
+    {loading ? "Saving..." : "Save Settings"}
+  </Button>
+</div>
+
 );
 
 };
