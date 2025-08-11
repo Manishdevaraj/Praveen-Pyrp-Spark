@@ -710,62 +710,62 @@ async function uploadOrderImage(imageFile, orderId) {
         <OrderDetailPrint order={selectedOrder} setting={setting} />
       );
   
-      const functions = getFunctions();
-      const generatePdf = httpsCallable(functions, "generatePdf");
+      // const functions = getFunctions();
+      // const generatePdf = httpsCallable(functions, "generatePdf");
   
-      const result = await generatePdf({
-        html,
-        fileName: `Order-${selectedOrder.orderId}`,
-      });
+      // const result = await generatePdf({
+      //   html,
+      //   fileName: `Order-${selectedOrder.orderId}`,
+      // });
       
-      const pdfUrl = result.data?.mediaUrl || "";
-      const sendMessage = httpsCallable(
-        functions,
-        "sendWhatsAppMessageOrderPlace"
-      );
+      // const pdfUrl = result.data?.mediaUrl || "";
+      // const sendMessage = httpsCallable(
+      //   functions,
+      //   "sendWhatsAppMessageOrderPlace"
+      // );
 
       // Prepare values
-      const totalItems = selectedOrder?.billProductList?.length || 0;
-      const finalAmount = selectedOrder?.totalAmount || 0;
-      const companyName = setting[0]?.CompanyName;
-      const trackingLink = `https://chennaisparklecrackers.in/track-order`;
+      // const totalItems = selectedOrder?.billProductList?.length || 0;
+      // const finalAmount = selectedOrder?.totalAmount || 0;
+      // const companyName = setting[0]?.CompanyName;
+      // const trackingLink = `https://chennaisparklecrackers.in/track-order`;
 
-      // Get sanitized numbers
-      const customerPhone = sanitizePhone(
-        selectedOrder.customer?.mobileNo || ""
-      );
-      const officePhone = sanitizePhone(setting[0]?.CellNO || "");
-      const ownerPhone = "+919952162941";
-      const ContactNumber = `${officePhone} / ${setting[0]?.WhatsAppNumber || ""}`;
+      // // Get sanitized numbers
+      // const customerPhone = sanitizePhone(
+      //   selectedOrder.customer?.mobileNo || ""
+      // );
+      // const officePhone = sanitizePhone(setting[0]?.CellNO || "");
+      // const ownerPhone = "+919952162941";
+      // const ContactNumber = `${officePhone} / ${setting[0]?.WhatsAppNumber || ""}`;
 
-      // Array of phone numbers to send message to
-      const phoneNumbers = [customerPhone, ownerPhone];
+      // // Array of phone numbers to send message to
+      // const phoneNumbers = [customerPhone, ownerPhone];
 
       // Send message to each number
-      for (const phone of phoneNumbers) {
-        try {
-          const whatsappResult = await sendMessage({
-            phone,
-            templateId: "HXdc888fa18833403460fdee5e64d13ca1",
-            templateParams: {
-              1: selectedOrder.custName, // Customer name
-              2: selectedOrder.orderId, // Order ID
-              3: totalItems.toString(), // Total items
-              4: finalAmount.toString(), // Total amount
-              5: ContactNumber, // Contact number
-              6: trackingLink, // Order tracking URL
-              7: companyName, // Business name
-              8: `Order-${selectedOrder.orderId}`,
-              9: setting[0]?.WhatsAppNumber || ""
-            },
-            mediaUrl: `${pdfUrl}`,
-          });
+      // for (const phone of phoneNumbers) {
+      //   try {
+      //     const whatsappResult = await sendMessage({
+      //       phone,
+      //       templateId: "HXdc888fa18833403460fdee5e64d13ca1",
+      //       templateParams: {
+      //         1: selectedOrder.custName, // Customer name
+      //         2: selectedOrder.orderId, // Order ID
+      //         3: totalItems.toString(), // Total items
+      //         4: finalAmount.toString(), // Total amount
+      //         5: ContactNumber, // Contact number
+      //         6: trackingLink, // Order tracking URL
+      //         7: companyName, // Business name
+      //         8: `Order-${selectedOrder.orderId}`,
+      //         9: setting[0]?.WhatsAppNumber || ""
+      //       },
+      //       mediaUrl: `${pdfUrl}`,
+      //     });
 
-          console.log(`✅ WhatsApp sent to ${phone}:`, whatsappResult.data);
-        } catch (err) {
-          console.error(`❌ Failed to send WhatsApp to ${phone}:`, err);
-        }
-      }
+      //     console.log(`✅ WhatsApp sent to ${phone}:`, whatsappResult.data);
+      //   } catch (err) {
+      //     console.error(`❌ Failed to send WhatsApp to ${phone}:`, err);
+      //   }
+      // }
  
     toast.success("✅ Order placed successfully! and WhatsApp message sent!");
     // toast.success("✅ Order placed successfully!");

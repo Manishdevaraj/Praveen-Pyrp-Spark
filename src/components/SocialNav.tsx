@@ -15,32 +15,36 @@ const SocialNavBar = () => {
 
   return (
     <div className="w-full bg-purple-100 py-4 px-6 flex flex-wrap justify-center gap-4">
-      
-      <SocialButton
+
+      {setting[0]?.WhatsappNo && <SocialButton
         icon={<BsWhatsapp className="text-green-500" />}
         label={`${setting[0]?.CellNO}`}
         href={`https://wa.me/${setting[0]?.WhatsappNo}`}
-      />
-      <SocialButton
-        icon={<FaYoutube className="text-red-600" />}
-        label="YouTube"
-        href= {setting[0]?.YouTube || "#"}
-      />
-      <SocialButton
+      />}
+      
+        {setting[0]?.YouTube&&<SocialButton
+          icon={<FaYoutube className="text-red-600" />}
+          label="YouTube"
+          href= {setting[0]?.YouTube || "#"}
+        />}
+        
+      {setting[0]?.Facebook&&<SocialButton
         icon={<FaFacebookF className="text-blue-600" />}
         label="Facebook"
         href={setting[0]?.Facebook || "#"}
-      />
-      <SocialButton
+      />}
+
+      {setting[0]?.Instagram&&<SocialButton
         icon={<FaInstagram className="text-pink-600" />}
         label="Instagram"
         href= {setting[0]?.Instagram || "#"}
-      />
-      <SocialButton
+      />}
+
+      {setting[0]?.PlayStore &&<SocialButton
         icon={<FaGooglePlay className="text-sky-500" />}
         label="Google Play Store"
         href= {setting[0]?.PlayStore || "#"}
-      />
+      />}
     </div>
   );
 };

@@ -345,7 +345,7 @@ const CheckOut = () => {
                     return;
                    }
 
-                  setShowPayment(true);
+                  setShowDialog(true);
                  
 
                 }}
@@ -517,7 +517,8 @@ const CheckOut = () => {
                     return;
                    }
 
-                  setShowPayment(true);
+                  // setShowPayment(true);
+                  setShowDialog(true);
                  
 
                 }}
