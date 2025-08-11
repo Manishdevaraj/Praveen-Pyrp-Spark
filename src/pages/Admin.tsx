@@ -696,7 +696,7 @@ const updateOrder=async()=>{
               
               <div className="flex justify-between items-center mb-4">
                 <Button onClick={()=>updateOrder()}>Save</Button>
-                <div className="print:hidden flex gap-2 justify-end mb-2">
+                <div className="print:hidden flex flex-col md:flex-row gap-2 justify-end mb-2">
                   <button
                     onClick={handlePrintOrderDetails}
                     className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 flex items-center gap-2 cursor-pointer"

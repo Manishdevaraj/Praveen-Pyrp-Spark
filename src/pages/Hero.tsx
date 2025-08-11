@@ -18,15 +18,15 @@ const Hero = () => {
         </title>
         <meta
           name="description"
-          content="Buy quality fireworks and crackers online at the lowest price from Chennai Sparkle Crackers, Sivakasi — the Crackers City of India."
+          content="Buy quality fireworks and crackers online at the lowest price from Vani Crackers, Sivakasi — the Crackers City of India."
         />
         <meta
           name="keywords"
-          content="buy crackers online, sivakasi crackers, fireworks, Chennai Sparkle Crackers, crackers city, quality crackers, cheap crackers, diwali crackers, discount crackers"
+          content="buy crackers online, sivakasi crackers, fireworks, Vani Crackers, crackers city, quality crackers, cheap crackers, diwali crackers, discount crackers"
         />
         <meta
           property="og:title"
-          content="Chennai Sparkle Crackers - Quality Crackers from Sivakasi"
+          content="Vani Crackers - Quality Crackers from Sivakasi"
         />
         <meta
           property="og:description"

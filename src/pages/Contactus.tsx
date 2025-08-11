@@ -60,20 +60,20 @@ const Contactus = () => {
     <>
       <Helmet>
         <title>
-          Contact Chennai Sparkle Crackers | Sivakasi Crackers Supplier
+          Contact Vani Crackers 
         </title>
         <meta
           name="description"
-          content="Reach out to Chennai Sparkle Crackers for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
+          content="Reach out to Vani Crackers for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
         />
         <meta
           name="keywords"
-          content="contact sivakasi crackers, Chennai Sparkle Crackers contact, fireworks supplier phone, email crackers support"
+          content="contact sivakasi crackers, Vani Crackers contact, fireworks supplier phone, email crackers support"
         />
-        <meta property="og:title" content="Contact Chennai Sparkle Crackers" />
+        <meta property="og:title" content="Contact Vani Crackers" />
         <meta
           property="og:description"
-          content="Have questions or want to place a bulk order? Contact Chennai Sparkle Crackers, your fireworks expert from Sivakasi."
+          content="Have questions or want to place a bulk order? Contact Vani Crackers, your fireworks expert from Sivakasi."
         />
         <meta property="og:image" content="/meta/contact-us.jpg" />
         <meta property="og:url" content="https://ChennaiSparkleCrackers.com/contactus" />

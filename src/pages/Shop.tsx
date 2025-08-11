@@ -491,7 +491,7 @@ const Shop = ({isStandardCrackers}) => {
       <div className="min-h-screen px-4 md:px-10 py-10 bg-gray-50">
         <Helmet>
           <title>
-            Shop Crackers Online | Chennai Sparkle Crackers Sivakasi
+            Shop Crackers Online | Vani Crackers Sivakasi
           </title>
           <meta
             name="description"

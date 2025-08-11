@@ -40,7 +40,7 @@ export default function Footer() {
 </div>
 
           <p className="text-sm mb-4">
-            Chennai Sparkle Crackers is your one-stop destination to buy quality fireworks at the cheapest prices in Chennai. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Chennai's leading cracker store.
+            Vani Crackers is your one-stop destination to buy quality fireworks at the cheapest prices in Chennai. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Chennai's leading cracker store.
           </p>
 
           <div className="space-y-2 text-sm">

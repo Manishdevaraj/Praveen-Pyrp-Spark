@@ -8,19 +8,19 @@ const AboutUs = () => {
   return (
     <>
       <Helmet>
-        <title>About Chennai Sparkle Crackers | Sivakasi Crackers City</title>
+        <title>About Vani Crackers | Sivakasi Crackers City</title>
         <meta
           name="description"
-          content="Learn about Chennai Sparkle Crackers, your trusted cracker supplier from Sivakasi. Delivering safe and affordable fireworks across India."
+          content="Learn about Vani Crackers, your trusted cracker supplier from Sivakasi. Delivering safe and affordable fireworks across India."
         />
         <meta
           name="keywords"
-          content="about Chennai Sparkle Crackers, sivakasi cracker company, trusted fireworks dealer, crackers city, fireworks brand"
+          content="about Vani Crackers, sivakasi cracker company, trusted fireworks dealer, crackers city, fireworks brand"
         />
 
         <meta
           property="og:title"
-          content="About Us - Chennai Sparkle Crackers Sivakasi"
+          content="About Us - Vani Crackers Sivakasi"
         />
         <meta
           property="og:description"
@@ -34,12 +34,12 @@ const AboutUs = () => {
           {/* Left: Text Content */}
           <div>
             <h2 className="text-4xl font-bold mb-6 text-gray-800">
-              About The Chennai Sparkle Crackers
+              About The Vani Crackers
             </h2>
 
             <div className="space-y-5 text-gray-600 text-lg leading-relaxed">
               <p>
-                Chennai Sparkle Crackers the most trusted and reliable website
+                Vani Crackers the most trusted and reliable website
                 for online fireworks shopping in India. We are happy to deliver
                 the best quality crackers at lowest prices. We sell different
                 varieties of conventional crackers and fancy novel crackers.
@@ -76,7 +76,7 @@ const AboutUs = () => {
           <div className="rounded-xl bg-gray-100 overflow-hidden shadow-md">
             <img
               src="/logo.png" // Adjust if needed
-              alt="About Chennai Sparkle Crackers"
+              alt="About Vani Crackers"
               className="w-full h-full object-cover"
             />
           </div>
