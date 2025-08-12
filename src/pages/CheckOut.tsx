@@ -114,7 +114,10 @@ const CheckOut = () => {
     setFormData(data);
     // setShowDialog(true);
   };
-
+if(!setting)
+  {
+    return;
+  }
   return (
     <>
       <div className="min-h-screen bg-gray-100 py-10 px-4 md:px-10">
@@ -579,7 +582,8 @@ const CheckOut = () => {
           </ul>
 
           <p className="text-red-600 font-bold text-lg mb-4">
-            Minimum Booking Value Rs.3500
+            Minimum Booking Value Rs.{settings[0]?.MinOrderValue
+}
           </p>
 
           <h3 className="text-lg font-semibold mb-1">Modification Terms</h3>

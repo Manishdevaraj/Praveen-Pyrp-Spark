@@ -1,6 +1,12 @@
 import Footer from "@/components/Footer";
+import { useFirebase } from "@/Services/context";
 
 export default function TermsAndConditions() {
+   const {setting}=useFirebase();
+  if(!setting)
+  {
+    return;
+  }
   return (
     <>
     
@@ -30,7 +36,8 @@ export default function TermsAndConditions() {
           </ul>
 
           <p className="text-red-600 font-bold text-lg mb-4">
-            Minimum Booking Value Rs.3500
+            Minimum Booking Value Rs.{setting[0]?.MinOrderValue
+}
           </p>
 
           <h3 className="text-lg font-semibold mb-1">Modification Terms</h3>
