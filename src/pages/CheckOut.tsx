@@ -78,7 +78,7 @@ const CheckOut = () => {
           const res = await fetch(`https://api.postalpincode.in/pincode/${pinCode}`);
           const data = await res.json();
           if (data[0].Status === "Success") {
-            console.log(data[0].PostOffice[0]);
+            // console.log(data[0].PostOffice[0]);
             const {Name, District, State } = data[0].PostOffice[0];
             setValue("city", Name);
             setValue("district", District);
@@ -563,9 +563,9 @@ const CheckOut = () => {
         <section className="mb-6">
           <h3 className="text-lg font-semibold mb-1">Shipping/Transportation</h3>
           <ul className="list-disc list-inside text-gray-700 mb-4">
-            <li>With In Chennai Only Door Delivery Available.</li>
+            {/* <li>With In Chennai Only Door Delivery Available.</li>
             <li>Out Of Chennai Districts No Door Delivery Available.</li>
-            <li>Chennai Customer’s Goods Delivery On Depends On The Customer Request Date.</li>
+            <li>Chennai Customer’s Goods Delivery On Depends On The Customer Request Date.</li> */}
             <li>Transportation Charges Extra</li>
             <li>Goods Cannot Be Sent Through Courier</li>
             <li>Shipping Of Goods Solely Depends On The Transporter</li>
@@ -626,9 +626,10 @@ const CheckOut = () => {
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
                 onClick={() => {
-                  console.log(isUpi);
+                  // console.log(isUpi);
                   if(isUpi)
-                  {  console.log(upiimage);
+                  {  
+                    // console.log(upiimage);
                     if(!upiimage){
                     toast.error("Please Uplode Upi Sceenshot");
                     return;}
@@ -657,7 +658,7 @@ const PaymentDetails = ({ setShowDialog,setupiimage,setisUpi }) => {
   const {  orderloading,}=useFirebase();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     if (file) setImage(file);
     setupiimage(file);
   };

@@ -136,7 +136,7 @@ const [multiBrandCategories, setMultiBrandCategories] = useState<string[]>([]);
         await update(ref(database), updates); // Push all to Firebase in one go
         localStorage.removeItem('guestCart'); // ✅ Clean up guest cart
         const guestWishlist = JSON.parse(localStorage.getItem('guestWishlist') || '[]');
-        console.log(guestWishlist);
+        // console.log(guestWishlist);
   if (guestWishlist.length > 0) {
     const wishlistRef = ref(database, `SVT/Wishlist/${firebaseUser.uid}`);
     const snapshot = await get(wishlistRef);
@@ -206,7 +206,7 @@ useEffect(() => {
           id,
           ...value,
         }));
-        console.log(loadedProducts);
+        // console.log(loadedProducts);
         setProducts(loadedProducts);
       } else {
         setProducts([]);
@@ -539,7 +539,7 @@ async function uploadOrderImage(imageFile, orderId) {
       async () => {
         try {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          console.log("✅ File available at", downloadURL);
+          // console.log("✅ File available at", downloadURL);
           resolve(downloadURL);
         } catch (err) {
           console.error("Error getting download URL:", err);
@@ -841,7 +841,7 @@ async function uploadOrderImage(imageFile, orderId) {
       //   product.PriceListName === "STANDARD CRACKERS"
       // )
       .map(([id, product]) => ({ id, ...product }));
-     console.log(sparklerProducts);
+    //  console.log(sparklerProducts);
     return sparklerProducts;
   } else {
     console.log("No data found.");
@@ -862,7 +862,7 @@ async function uploadOrderImage(imageFile, orderId) {
         product.PriceListName === "ONLINE PRICE LIST"
       )
       .map(([id, product]) => ({ id, ...product }));
-    console.log(Products);
+    // console.log(Products);
     return Products;
   } else {
     console.log("No data found.");
@@ -882,7 +882,7 @@ async function getgiftProducts() {
         product.CategoryName === "COMBO ITEMS ( Multi Brand )"
       )
       .map(([id, product]) => ({ id, ...product }));
-     console.log(sparklerProducts);
+    //  console.log(sparklerProducts);
     return sparklerProducts;
   } else {
     console.log("No data found.");
@@ -898,7 +898,7 @@ async function getStandardGiftProducts() {
 
     const sparklerProducts = Object.entries(data)
       .map(([id, product]) => ({ id, ...product }));
-     console.log(sparklerProducts);
+    //  console.log(sparklerProducts);
     return sparklerProducts;
   } else {
     console.log("No data found.");

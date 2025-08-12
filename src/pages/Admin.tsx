@@ -160,8 +160,8 @@ const Admin = () => {
    
   const packingCharge = (totalAmount * (localSetting[0]?.packageCharge || 0)) / 100;
 
-    console.log(totalAmount)
-    console.log(packingCharge)
+    // console.log(totalAmount)
+    // console.log(packingCharge)
 
 
     setSelectedOrder((prev) => ({
@@ -315,7 +315,7 @@ const Admin = () => {
 
       const pdfUrl = result.data?.mediaUrl || '';
 
-      console.log(pdfUrl);
+      // console.log(pdfUrl);
 
       // const sendMessage = httpsCallable(functions, "sendWhatsAppMessageOrderPlace");
 

@@ -14,9 +14,9 @@ export default function TermsAndConditions() {
         <section className="mb-6">
           <h3 className="text-lg font-semibold mb-1">Shipping/Transportation</h3>
           <ul className="list-disc list-inside text-gray-700 mb-4">
-            <li>With In Chennai Only Door Delivery Available.</li>
+            {/* <li>With In Chennai Only Door Delivery Available.</li>
             <li>Out Of Chennai Districts No Door Delivery Available.</li>
-            <li>Chennai Customer’s Goods Delivery On Depends On The Customer Request Date.</li>
+            <li>Chennai Customer’s Goods Delivery On Depends On The Customer Request Date.</li> */}
             <li>Transportation Charges Extra</li>
             <li>Goods Cannot Be Sent Through Courier</li>
             <li>Shipping Of Goods Solely Depends On The Transporter</li>

@@ -747,8 +747,8 @@ export const EditProduct=()=>{
   const filteredProducts = products.filter((item) => {
     const matchesSearch = item.productName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "" || item.CategoryName === selectedCategory;
-    console.log("Selected Category:", selectedCategory);
-    console.log("matchesSearch:", matchesSearch, "matchesCategory:", matchesCategory);
+    // console.log("Selected Category:", selectedCategory);
+    // console.log("matchesSearch:", matchesSearch, "matchesCategory:", matchesCategory);
     return matchesSearch && matchesCategory;
   });
 
