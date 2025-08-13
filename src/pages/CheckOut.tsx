@@ -114,10 +114,10 @@ const CheckOut = () => {
     setFormData(data);
     // setShowDialog(true);
   };
-if(!setting)
-  {
-    return;
-  }
+// if(!setting)
+//   {
+//     return;
+//   }
   return (
     <>
       <div className="min-h-screen bg-gray-100 py-10 px-4 md:px-10">
