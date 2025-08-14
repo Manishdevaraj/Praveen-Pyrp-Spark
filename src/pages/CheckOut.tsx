@@ -53,7 +53,7 @@ const CheckOut = () => {
   const [pinError, setPinError] = useState("");
 
   const getPackgeCost = async () => {
-    const userRef = ref(database, `CSC/Settings`);
+    const userRef = ref(database, `HPC/Settings`);
     const snapshot = await get(userRef);
     if (!snapshot.exists()) return;
     const item = snapshot.val();
