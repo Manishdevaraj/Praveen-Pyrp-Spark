@@ -112,7 +112,7 @@ const CheckOut = () => {
 
   const onSubmit = (data) => {
     setFormData(data);
-    // setShowDialog(true);
+    setShowDialog(true);
   };
 // if(!setting)
 //   {
@@ -335,24 +335,7 @@ const CheckOut = () => {
               <button
                 className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-200 shadow-md flex ml-auto items-center gap-2 cursor-pointer"
                 disabled={ loading}
-                onClick={async() => {
-                 
-                    handleSubmit(await onSubmit)();
-                  if(!useExistingAddress&&(!formData.name||!formData.district||!formData.state||!formData.addressLine1||!formData.phone||!formData.city||!formData.pinCode))
-                  {
-                    return;
-                  }
-                   if(checkoutItems.length === 0)
-                   {
-                    toast.error("Cart is Empty!");
-                    return;
-                   }
-
-                  setShowDialog(true);
-                 
-
-                }}
-              ><MdOutlinePayment className="text-2xl"/>
+                onClick={handleSubmit(onSubmit)}              ><MdOutlinePayment className="text-2xl"/>
                 Proceed To Confirm
               </button>
             </div>
