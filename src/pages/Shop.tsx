@@ -154,7 +154,7 @@ export const ProductTableRow = React.memo(({ product }) => {
                   </div>
                 ) : (
                   <Button
-                    className="bg-gradient-to-br from-cyan-600 to-indigo-900 text-white text-xs px-3 py-1"
+                    className="bbg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white text-xs px-3 py-1"
                     onClick={() => toggleCart(product)}
                   >
                     Add
@@ -174,7 +174,7 @@ export const ProductTableRow = React.memo(({ product }) => {
       <tr className="hidden sm:table-row border-b relative">
         <td className="p-2 w-[60px] lg:w-[90px] relative">
           {!product.active && (
-            <div className="absolute top-1 left-1 bg-gradient-to-r from-yellow-400 to-red-500 text-white text-[10px] font-semibold px-2 py-[2px] rounded z-10">
+            <div className="absolute top-1 left-1 bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white text-[10px] font-semibold px-2 py-[2px] rounded z-10">
               Out of Stock
             </div>
           )}
@@ -236,7 +236,7 @@ export const ProductTableRow = React.memo(({ product }) => {
               </div>
             ) : (
               <Button
-                className="bg-gradient-to-br from-cyan-600 to-indigo-900 text-white text-sm"
+                className="bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white text-sm"
                 onClick={() => toggleCart(product)}
               >
                 Add
@@ -491,7 +491,7 @@ const Shop = ({isStandardCrackers}) => {
       <div className="min-h-screen px-4 md:px-10 py-10 bg-gray-50">
         <Helmet>
           <title>
-            Shop Crackers Online |  Sri Venkatesh Traders Sivakasi
+            Shop Crackers Online |  Harini Priya Crackers Sivakasi
           </title>
           <meta
             name="description"
@@ -510,7 +510,7 @@ const Shop = ({isStandardCrackers}) => {
             content="Premium Sivakasi crackers at wholesale price. Shop safe and eco-friendly fireworks online now!"
           />
           <meta property="og:image" content="/meta/shop-banner.jpg" />
-          <meta property="og:url" content="https://srivenkateshtraders.in/shop" />
+          <meta property="og:url" content="https://harinipriyacrackers.com/shop" />
         </Helmet>
         <CartSummary />
 
@@ -621,7 +621,7 @@ const Shop = ({isStandardCrackers}) => {
             <button
               onClick={() => handleViewChange("list")}
               className={`border p-2 rounded ${
-                viewMode === "table" ? "bg-gradient-to-br from-[#00c853] to-[#b2ff59]" : "bg-white"
+                viewMode === "list" ? "bg-gradient-to-br from-[#00c853] to-[#b2ff59]" : "bg-white"
               }`}
             >
               <FaTable />
@@ -637,14 +637,14 @@ const Shop = ({isStandardCrackers}) => {
                   {/* Category Heading */}
                     <div className="mb-4">
                       {/* Desktop View */}
-                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-br from-cyan-600 to-indigo-900 border border-gray-300 rounded-md shadow px-4 py-2.5 text-white">
+                      <div className="hidden sm:flex w-full justify-center items-center bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] border border-gray-300 rounded-md shadow px-4 py-2.5 text-white">
                         <h2 className="text-base font-semibold text-white tracking-wide">
                           {category}
                         </h2>
                       </div>
 
                       {/* Mobile View */}
-                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-br from-cyan-600 to-indigo-900 border-b border-gray-300 rounded px-3 py-2 shadow-sm text-white">
+                      <div className="flex sm:hidden w-full justify-center items-center bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] border-b border-gray-300 rounded px-3 py-2 shadow-sm text-white">
                         <h2 className="text-sm font-medium text-white tracking-wide">
                           {category}
                         </h2>
@@ -682,7 +682,7 @@ const Shop = ({isStandardCrackers}) => {
                       ([category, products]) => (
                         <React.Fragment key={category}>
                           {/* Desktop Table Category Row */}
-                          <tr className="hidden sm:table-row bg-gradient-to-br from-cyan-600 to-indigo-900">
+                          <tr className="hidden sm:table-row bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300]">
                             <td colSpan={6} className="px-4 py-3 text-center border border-gray-300 rounded-md shadow">
                               <span className="text-base font-semibold text-white tracking-wide">
                                 {category}
@@ -691,7 +691,7 @@ const Shop = ({isStandardCrackers}) => {
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b bg-gradient-to-br from-cyan-600 to-indigo-900">
+                          <tr className="block sm:hidden border-b bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300]">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
                               <span className="text-sm font-medium text-white tracking-wide">
                                 {category}

@@ -28,24 +28,24 @@ export default function Footer() {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Sri Venkatesh Traders Logo"
+    alt="Harini Priya Crackers Logo"
     className="h-12 w-12 object-contain"
   />
 
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">SRI VENEKATESH</span>{' '}
-    <span className="text-cyan-600">TRADERS</span>
+    <span className="text-black">Harini Priya </span>{' '}
+    <span className="text-[#ffb300]">Crackers</span>
   </p>
 </div>
 
           <p className="text-sm mb-4">
-             Sri Venkatesh Traders is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
+             Harini Priya Crackers  is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
           </p>
 
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
-              <FaMapMarkerAlt className="text-green-600 mt-1" />
+              <FaMapMarkerAlt className="text-[#ffb300] mt-1" />
               <span><b></b>{setting[0]?.Address}</span>
             </div>
             {/* <div className="flex items-start gap-2">
@@ -53,12 +53,12 @@ export default function Footer() {
               <span><b>Sivakasi Address: </b> 2/154 4th cross street, Chinnakam patti, Sivakasi to sattur road, Sivakasi</span>
             </div> */}
             <div className="flex items-start gap-2">
-              <FaEnvelope className="text-green-600 mt-1" />
+              <FaEnvelope className="text-[#ffb300] mt-1" />
               <span>{setting[0]?.EmailID}</span>
             </div>
             <div className="flex items-start gap-4 flex-wrap">
               <div className="flex items-center gap-2">
-                <FaPhoneAlt className="text-green-600" />
+                <FaPhoneAlt className="text-[#ffb300]" />
                 <a
                   href={`tel:${setting[0]?.CellNO}`}
                   className="text-blue-600 hover:underline"

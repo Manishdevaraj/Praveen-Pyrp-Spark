@@ -79,7 +79,7 @@ const AdminProduct = ({ handleAddProduct }) => {
 
 
    useEffect(() => {
-  const CategoriesRef = ref(database, "SVT/GeneralMaster/Product Group");
+  const CategoriesRef = ref(database, "HPC/GeneralMaster/Product Group");
 
   const unsubscribe = onValue(CategoriesRef, (snapshot) => {
     const data = snapshot.val();
@@ -144,7 +144,7 @@ export default AdminProduct;
 const handleDeleteProduct = async (product) => {
   if (!product?.id) return alert("Product ID not found");
 
-  const productRef = dbRef(database, `SVT/Products/${product.id}`);
+  const productRef = dbRef(database, `HPC/Products/${product.id}`);
   try {
     await remove(productRef);
     alert("Product deleted successfully.");
@@ -206,7 +206,7 @@ export const AddProductToShop = () => {
   useEffect(()=>{
            
          const getCatagory=async()=>{
-                const orderRef = ref(database, `SVT/GeneralMaster`);
+                const orderRef = ref(database, `HPC/GeneralMaster`);
                     const snapshot = await get(orderRef);
                     setGeneralMaster(snapshot.val())
                     // return snapshot.exists() ?  : null;
@@ -254,14 +254,14 @@ export const AddProductToShop = () => {
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/SVT/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/HPC/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
 
   const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/SVT/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/HPC/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -304,7 +304,7 @@ export const AddProductToShop = () => {
         id: ProductdbId,
       };
 
-      const productRef = dbRef(database, `SVT/Products/${ProductdbId}`);
+      const productRef = dbRef(database, `HPC/Products/${ProductdbId}`);
       await set(productRef, finalData);
 
       toast.success("Product added successfully!");
@@ -731,7 +731,7 @@ export const EditProduct=()=>{
   const [generalMaster,setGeneralMaster]=useState();
   useEffect(()=>{
       const getCatagory=async()=>{
-            const orderRef = ref(database, `SVT/GeneralMaster`);
+            const orderRef = ref(database, `HPC/GeneralMaster`);
                 const snapshot = await get(orderRef);
                 setGeneralMaster(snapshot.val())
                 // return snapshot.exists() ?  : null;
@@ -798,13 +798,13 @@ export const EditProduct=()=>{
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/SVT/products/${Date.now()}-${imageFile.name}`);
+    const imgRef = storageRef(storage, `images/HPC/products/${Date.now()}-${imageFile.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
    const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/SVT/products/${Date.now()}-${imageFile2.name}`);
+    const imgRef = storageRef(storage, `images/HPC/products/${Date.now()}-${imageFile2.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -820,7 +820,7 @@ export const EditProduct=()=>{
         productImageURL: imageUrl ? imageUrl : selectedProduct.productImageURL,
         productImageURL2: imageUrl2 ? imageUrl2 : selectedProduct.productImageURL2,
       };
-     const productRef = dbRef(database, `SVT/Products/${selectedProduct.id}`);
+     const productRef = dbRef(database, `HPC/Products/${selectedProduct.id}`);
      await set(productRef, finalData);
 
       toast.success("Product updated successfully!");
@@ -1245,7 +1245,7 @@ export const EditSettings = () => {
 
   useEffect(() => {
     const getSetting = async () => {
-      const settingRef = dbRef(database, `SVT/Settings`);
+      const settingRef = dbRef(database, `HPC/Settings`);
       const snapshot = await get(settingRef);
       if (snapshot.exists()) {
         const data = snapshot.val();
@@ -1274,7 +1274,7 @@ export const EditSettings = () => {
 
     const newUrls: string[] = [];
     for (const file of Array.from(files)) {
-      const url = await handleFileUpload(file, `SVT/banners/${type}/${Date.now()}-${file.name}`);
+      const url = await handleFileUpload(file, `HPC/banners/${type}/${Date.now()}-${file.name}`);
       newUrls.push(url);
     }
     handleChange(
@@ -1307,7 +1307,7 @@ export const EditSettings = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      await update(dbRef(database, `SVT/Settings`), {
+      await update(dbRef(database, `HPC/Settings`), {
         '0': { ...formData }
       });
       setSettings(formData);
@@ -1456,7 +1456,7 @@ return (
       onChange={async (e) => {
         const file = e.target.files?.[0];
         if (file) {
-          const url = await handleFileUpload(file, `SVT/pdf/${file.name}`);
+          const url = await handleFileUpload(file, `HPC/pdf/${file.name}`);
           handleChange("pdfURL", url);
         }
       }}
