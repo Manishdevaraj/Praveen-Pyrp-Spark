@@ -54,7 +54,7 @@ const HeroCarousel = () => {
           <CarouselItem key={index}>
             <div
                className={` relative w-full overflow-hidden rounded-md group
-               ${isMobileView ? "aspect-[2/1]" : "aspect-[3/1]"}
+               ${isMobileView ? "aspect-[4/3]" : "aspect-[3/1]"}
              `} >
               <img
                 src={url}
