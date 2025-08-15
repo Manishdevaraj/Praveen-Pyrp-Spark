@@ -812,13 +812,17 @@ export const EditProduct=()=>{
     try {
       setLoading(true);
       const imageUrl = await handleImageUpload();
-      const imageUrl2 = await handleImageUpload2();
+      let imageUrl2=null;
+      if (imageFile2)
+        {
+          imageUrl2 = await handleImageUpload2();
+      }
 
 
       const finalData = {
         ...selectedProduct,
         productImageURL: imageUrl ? imageUrl : selectedProduct.productImageURL,
-        productImageURL2: imageUrl2 ? imageUrl2 : selectedProduct.productImageURL2,
+        productImageURL2: imageUrl2 ? imageUrl2 : (selectedProduct?.productImageURL2?selectedProduct.productImageURL2:""),
       };
      const productRef = dbRef(database, `HPC/Products/${selectedProduct.id}`);
      await set(productRef, finalData);
