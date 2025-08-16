@@ -129,6 +129,12 @@ const MainNav = ({onProfileClick}) => {
                   >
                     Settings Master
                   </div>
+                  <div
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => navigate('/excel-admin')}
+                  >
+                    Excel Master
+                  </div>
                 </>
                 )}
                   <div
