@@ -756,44 +756,52 @@ export const EditProduct=()=>{
   const [imageFile2, setImageFile2] = useState(null);
 
 
-   const handleChange = (field: string, value: string | number | boolean) => {
+  const handleChange = (field: string, value: string | number | boolean) => {
+  const numberFields = [
+    'discPerc', 'discAmt', 'salesPrice', 'rate',
+    'qty', 'free', 'margin', 'per', 'beforeDiscPrice',
+    'stock', 'stockValue', 'cgstperc', 'sgstperc', 'cessPerc', 'gst',
+    'productCode', 'productGroupCode', 'uom'
+  ];
+  const booleanFields = ['active', 'importStatus', 'isMarginBased'];
 
-    const numberFields = [
-      'discPerc', 'discAmt', 'salesPrice', 'rate',
-      'qty', 'free', 'margin', 'per', 'beforeDiscPrice',
-      'stock', 'stockValue', 'cgstperc', 'sgstperc', 'cessPerc', 'gst',
-      'productCode', 'productGroupCode', 'uom'
-    ];
-    const booleanFields = ['active', 'importStatus', 'isMarginBased'];
+  let parsedValue: string | number | boolean = value;
 
-    let parsedValue: string | number | boolean = value;
+  if (numberFields.includes(field)) {
+    parsedValue = Number(value);
+  } else if (booleanFields.includes(field)) {
+    parsedValue = value === 'true' || value === true;
+  }
 
-    if (numberFields.includes(field)) {
-      parsedValue = Number(value);
-    } else if (booleanFields.includes(field)) {
-      parsedValue = value === 'true' || value === true;
-    }
+  setselectedProduct((prev) => {
+    let updated = { ...prev };
 
-    setselectedProduct((prev) => {
-      const updated = {
-        ...selectedProduct,
+    if (field === 'CategoryName') {
+      updated = {
+        ...prev,
+        CategoryName: String(value), // safely add/update CategoryName
+      };
+    } else {
+      updated = {
+        ...prev,
         [field]: parsedValue,
       };
+    }
 
-      // Auto-calculate Discount Amount and Sales Price
-      const beforeDisc = Number(updated.beforeDiscPrice);
-      const discPerc = Number(updated.discPerc);
-      
-      if (!isNaN(beforeDisc) && !isNaN(discPerc)) {
-        const discAmt = (beforeDisc * discPerc) / 100;
-        const salesPrice = beforeDisc - discAmt;
-        updated.discAmt = parseFloat(discAmt.toFixed(2)); // optional rounding
-        updated.salesPrice = parseFloat(salesPrice.toFixed(2));
-      }
+    // Auto-calculate Discount Amount and Sales Price
+    const beforeDisc = Number(updated.beforeDiscPrice);
+    const discPerc = Number(updated.discPerc);
 
-      return updated;
-    });
-  };
+    if (!isNaN(beforeDisc) && !isNaN(discPerc)) {
+      const discAmt = (beforeDisc * discPerc) / 100;
+      const salesPrice = beforeDisc - discAmt;
+      updated.discAmt = parseFloat(discAmt.toFixed(2));
+      updated.salesPrice = parseFloat(salesPrice.toFixed(2));
+    }
+
+    return updated;
+  });
+};
 
 
   const handleImageUpload = async () => {
@@ -967,7 +975,9 @@ export const EditProduct=()=>{
 
                 if (selectedGroup) {
                   handleChange("CategoryName", selectedGroup.generalName);
-                  handleChange("productGroupCode", selectedGroup.id); // or generalCode if you prefer
+                  handleChange("productGroupCode", selectedGroup.id); 
+                  handleChange("productGroupId", selectedGroup.id);
+
                 }
               }}
             >
