@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as XLSX from "xlsx";
 import { ref, get, set } from "firebase/database";
 import { database, storage } from "@/Services/Firebase.config";
@@ -299,10 +299,13 @@ export const ImportProductDataFromExcel = () => {
     "image1",
     "image2",
   ];
-
+   const fileRef=useRef();
   return (
     <div className="p-4">
-      <input type="file" accept=".xlsx,.xls" onChange={handleFileUpload} />
+      <input ref={fileRef} type="file" accept=".xlsx,.xls" onChange={handleFileUpload} className="hidden" />
+      <Button onClick={() => fileRef.current.click()}>
+        Upload Excel
+      </Button>
 
       {rows.length > 0 && Object.keys(errors).length === 0 && (
         <Button onClick={saveToDatabase} disabled={loading} className="mt-4">
