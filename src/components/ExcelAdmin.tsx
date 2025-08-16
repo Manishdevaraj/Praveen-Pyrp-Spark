@@ -201,7 +201,7 @@ export const ImportProductDataFromExcel = () => {
   };
 
   const uploadImage = async (file) => {
-    const imgRef = storageRef(storage, `images/${Date.now()}_${file.name}`);
+    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}_${file.name}`);
     await uploadBytes(imgRef, file);
     return await getDownloadURL(imgRef);
   };
