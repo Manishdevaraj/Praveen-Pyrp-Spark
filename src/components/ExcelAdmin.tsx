@@ -73,7 +73,7 @@ export const ImportProductDataFromExcel = () => {
   const [errors, setErrors] = useState({});
   const [warnings, setWarnings] = useState({});
   const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState({}); // track per-cell uploading state
+  const [uploading, setUploading] = useState({}); // per-cell uploading
 
   useEffect(() => {
     const getUom = async () => {
@@ -105,24 +105,35 @@ export const ImportProductDataFromExcel = () => {
         });
         return {
           ...fullRow,
+          image1: "", // will hold DB/excel/uploaded image
+          image2: "",
           _image1File: null,
           _image2File: null,
         };
       });
 
-      setRows(parsedRows);
-      validateRows(parsedRows);
+      // merge DB existing images if product already exists
+      const mergedRows = parsedRows.map((row) => {
+        if (row["Product Id"] && products) {
+          const existing = Object.values(products).find(
+            (p) => p["productId"]?.toString() === row["Product Id"].toString()
+          );
+          if (existing) {
+            if (!row.image1) row.image1 = existing.productImageURL || "";
+            if (!row.image2) row.image2 = existing.productImageURL2 || "";
+          }
+        }
+        return row;
+      });
+
+      setRows(mergedRows);
+      validateRows(mergedRows);
     };
 
     reader.readAsArrayBuffer(file);
   };
 
-  const requiredFields = [
-    "Product Id",
-    "Product Name",
-    "Category Name",
-    "Unit-[uom]",
-  ];
+  const requiredFields = ["Product Id", "Product Name", "Category Name", "Unit-[uom]"];
 
   const validateRows = (data) => {
     const newErrors = {};
@@ -213,103 +224,52 @@ export const ImportProductDataFromExcel = () => {
 
     setUploading((prev) => ({ ...prev, [`${rowIndex}-${field}`]: false }));
   };
-  // ✅ default schema for every product
-//   const defaultProductSchema = {
-//     CategoryName: "",
-//     FlavourCode: 0,
-//     PriceListID: "",
-//     PriceListName: "",
-//     SubCategoryCode: 0,
-//     active: true,
-//     beforeDiscPrice: 0,
-//     cessPerc: 0,
-//     cgstperc: 0,
-//     companyID: "MLC", // fixed
-//     contains: "",
-//     discAmt: 0,
-//     discPerc: 0,
-//     free: 0,
-//     gst: 0,
-//     hsnCode: "",
-//     id: "", // will be set = productId
-//     importStatus: false,
-//     isMarginBased: false,
-//     margin: 0,
-//     per: 1,
-//     productCode: 0, // same as productId
-//     productGroupCode: 0, // from category
-//     productGroupId: "",  // from category
-//     productId: "",
-//     productImageURL: "",
-//     productImageURL2: "",
-//     productName: "",
-//     qty: 0,
-//     rate: 0,
-//     retailproduct: true,
-//     salesPrice: 0,
-//     sgstperc: 0,
-//     sortingorder: 1,
-//     stock: 0,
-//     stockValue: 0,
-//     uom: 0,      // numeric id from generalMaster
-//     uomid: "",   // id key
-//     youtubeURL: "",
-//     tag: ""
-//   };
-   const saveToDatabase = async () => {
+
+  const saveToDatabase = async () => {
     setLoading(true);
     try {
       for (let i = 0; i < rows.length; i++) {
         const excelRow = { ...rows[i] };
 
-        // --- lookup category ---
         const category = Object.values(Categories).find(
           (cat) => cat.generalName === excelRow["Category Name"]
         );
 
-        // --- lookup uom ---
-        const [uomId, uomVal] =
+        const [uomId] =
           Object.entries(generalMaster?.UOM || {}).find(
             ([, val]) => val.generalName === excelRow["Unit-[uom]"]
           ) || [];
 
-        // --- prepare product object with defaults ---
         const product = {
-         
-          ...{
-            CategoryName: excelRow["Category Name"] || "",
-            productId: excelRow["Product Id"]?.toString(),
-            productCode: excelRow["Product Id"]?.toString(),
-            id: excelRow["Product Id"]?.toString(),
-            productName: excelRow["Product Name"] || "",
-            beforeDiscPrice: Number(excelRow["Before Discount Price"] || 0),
-            discPerc: Number(excelRow["Discount %"] || 0),
-            salesPrice: Number(excelRow["Sales Price"] || 0),
-            per: Number(excelRow["Per Unit"] || 1),
-            sortingorder: Number(excelRow["Sorting Order"] || 1),
-            active: excelRow["Active"]?.toLowerCase() === "yes",
-            contains: excelRow["Contains"] || "",
-            tag: excelRow["Tag Name"] || "",
-            productImageURL: excelRow.image1 || "",
-            productImageURL2: excelRow.image2 || "",
-            CategoryId: category?.id || "",
-            productGroupId: category?.id || "",
-            productGroupCode: category?.generalCode || 0,
-            uom: uomId ? Number(uomId) : 0,
-            uomid: uomId || "",
-          },
+          CategoryName: excelRow["Category Name"] || "",
+          productId: excelRow["Product Id"]?.toString(),
+          productCode: excelRow["Product Id"]?.toString(),
+          id: excelRow["Product Id"]?.toString(),
+          productName: excelRow["Product Name"] || "",
+          beforeDiscPrice: Number(excelRow["Before Discount Price"] || 0),
+          discPerc: Number(excelRow["Discount %"] || 0),
+          salesPrice: Number(excelRow["Sales Price"] || 0),
+          per: Number(excelRow["Per Unit"] || 1),
+          sortingorder: Number(excelRow["Sorting Order"] || 1),
+          active: excelRow["Active"]?.toLowerCase() === "yes",
+          contains: excelRow["Contains"] || "",
+          tag: excelRow["Tag Name"] || "",
+          productImageURL: excelRow.image1 || "",
+          productImageURL2: excelRow.image2 || "",
+          CategoryId: category?.id || "",
+          productGroupId: category?.id || "",
+          productGroupCode: category?.generalCode || 0,
+          uom: uomId ? Number(uomId) : 0,
+          uomid: uomId || "",
         };
 
-        // --- merge if product already exists ---
         const newRef = ref(database, `MLC/Products/${product.productId}`);
         const snap = await get(newRef);
 
         if (snap.exists()) {
-          // merge existing with new values
           const existing = snap.val();
           await set(newRef, { ...existing, ...product });
         } else {
-          // insert new
           await set(newRef, product);
         }
       }
@@ -320,7 +280,6 @@ export const ImportProductDataFromExcel = () => {
     }
     setLoading(false);
   };
-
 
   const displayFields = [
     "S.No",
@@ -345,13 +304,11 @@ export const ImportProductDataFromExcel = () => {
     <div className="p-4">
       <input type="file" accept=".xlsx,.xls" onChange={handleFileUpload} />
 
-      {rows.length > 0 &&
-        Object.keys(errors).length === 0 &&
-        (
-          <Button onClick={saveToDatabase} disabled={loading} className="mt-4">
-            {loading ? "Saving..." : "Save to Database"}
-          </Button>
-        )}
+      {rows.length > 0 && Object.keys(errors).length === 0 && (
+        <Button onClick={saveToDatabase} disabled={loading} className="mt-4">
+          {loading ? "Saving..." : "Save to Database"}
+        </Button>
+      )}
 
       {rows.length > 0 && (
         <table className="border border-gray-300 mt-4 w-full text-sm">
@@ -387,12 +344,26 @@ export const ImportProductDataFromExcel = () => {
                             Uploading...
                           </span>
                         ) : row[field] ? (
-                          <img
-                            src={row[field]}
-                            alt="preview"
-                            className="w-16 h-16 object-cover rounded"
-                          />
+                          <div className="flex flex-col items-center">
+                            <img
+                              src={row[field]}
+                              alt="preview"
+                              className="w-16 h-16 object-cover rounded"
+                            />
+                            <button
+                              type="button"
+                              className="text-red-500 text-xs mt-1"
+                              onClick={() => {
+                                const updatedRows = [...rows];
+                                updatedRows[rowIndex][field] = "";
+                                setRows(updatedRows);
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </div>
                         ) : null}
+
                         <input
                           type="file"
                           accept="image/*"
