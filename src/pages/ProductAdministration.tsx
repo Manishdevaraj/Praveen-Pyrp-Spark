@@ -2,6 +2,7 @@
 import React from 'react'
 import Shop from './Shop'
 import { AddProductToShop, EditProduct } from '@/components/AdminProduct'
+// import { ExportProductDataToExcel, ImportProductDataFromExcel } from '@/components/ExcelAdmin'
 
 const ProductAdministration = () => {
   return (
@@ -10,6 +11,8 @@ const ProductAdministration = () => {
 
            <AddProductToShop/>
            <EditProduct/>
+           {/* <ExportProductDataToExcel/>
+           <ImportProductDataFromExcel/> */}
           </div>
     <Shop isStandardCrackers={true}/>
     </>

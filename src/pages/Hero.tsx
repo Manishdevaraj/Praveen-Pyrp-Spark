@@ -14,26 +14,26 @@ const Hero = () => {
     <>
       <Helmet>
         <title>
-         Harini Priya Crackers
+         Muthu Lakshmi Crackers
         </title>
         <meta
           name="description"
-          content="Buy quality fireworks and crackers online at the lowest price from Harini Priya Crackers, Sivakasi — the Crackers City of India."
+          content="Buy quality fireworks and crackers online at the lowest price from Muthu Lakshmi Crackers, Sivakasi — the Crackers City of India."
         />
         <meta
           name="keywords"
-          content="buy crackers online, sivakasi crackers, fireworks, Harini Priya Crackers, crackers city, quality crackers, cheap crackers, diwali crackers, discount crackers"
+          content="buy crackers online, sivakasi crackers, fireworks, Muthu Lakshmi Crackers, crackers city, quality crackers, cheap crackers, diwali crackers, discount crackers"
         />
         <meta
           property="og:title"
-          content="Harini Priya Crackers - Quality Crackers from Sivakasi"
+          content="Muthu Lakshmi Crackers - Quality Crackers from Sivakasi"
         />
         <meta
           property="og:description"
           content="Get the best deals on crackers directly from Sivakasi – India's Crackers City. Safe, certified, and budget-friendly fireworks."
         />
         <meta property="og:image" content="/meta/home-banner.jpg" />
-        <meta property="og:url" content="https://harinipriyacrackers.com/aboutus" />
+        <meta property="og:url" content="https://muthulakshmicrackers.com/aboutus" />
       </Helmet>
       <div className="flex flex-col min-h-screen">
         <section className="flex-1">

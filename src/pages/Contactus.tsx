@@ -60,23 +60,23 @@ const Contactus = () => {
     <>
       <Helmet>
         <title>
-          Contact Harini Priya Crackers
+          Contact Muthu Lakshmi Crackers
         </title>
         <meta
           name="description"
-          content="Reach out to Harini Priya Crackers for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
+          content="Reach out to Muthu Lakshmi Crackers for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
         />
         <meta
           name="keywords"
-          content="contact sivakasi crackers, Harini Priya Crackers contact, fireworks supplier phone, email crackers support"
+          content="contact sivakasi crackers, Muthu Lakshmi Crackers contact, fireworks supplier phone, email crackers support"
         />
-        <meta property="og:title" content="Contact Harini Priya Crackers" />
+        <meta property="og:title" content="Contact Muthu Lakshmi Crackers" />
         <meta
           property="og:description"
-          content="Have questions or want to place a bulk order? Contact Harini Priya Crackers, your fireworks expert from Sivakasi."
+          content="Have questions or want to place a bulk order? Contact Muthu Lakshmi Crackers, your fireworks expert from Sivakasi."
         />
         <meta property="og:image" content="/meta/contact-us.jpg" />
-        <meta property="og:url" content="https://harinipriyacrackers.com/contactus" />
+        <meta property="og:url" content="https://muthulakshmicrackers.com/contactus" />
       </Helmet>
       <section className="bg-gray-50 min-h-screen pt-20 pb-16 px-4 md:px-10">
         {/* Header Section */}
@@ -122,7 +122,7 @@ const Contactus = () => {
             <Mail className="mx-auto mb-3 text-emerald-500" size={32} />
             <h3 className="text-xl font-semibold mb-2">Mail & Website</h3>
             <p className="text-gray-600">{setting[0]?.EmailID}</p>
-            <p className="text-gray-600">www.harinipriyacrackers.com</p>
+            <p className="text-gray-600">www.muthulakshmicrackers.com</p>
           </div>
 
           {/* Address Card */}

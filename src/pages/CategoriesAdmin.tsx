@@ -34,7 +34,7 @@ const ManageCategories = () => {
   //   fetchCategories();
   // }, []);
    useEffect(() => {
-    const CategoriesRef = ref(database, "HPC/GeneralMaster/Product Group");
+    const CategoriesRef = ref(database, "MLC/GeneralMaster/Product Group");
 
     const unsubscribe = onValue(CategoriesRef, (snapshot) => {
       const data = snapshot.val();
@@ -53,7 +53,7 @@ const ManageCategories = () => {
       if (editId) {
         // Edit category
         await update(
-          dbRef(database, `HPC/GeneralMaster/Product Group/${editId}`),
+          dbRef(database, `MLC/GeneralMaster/Product Group/${editId}`),
           {
             generalName: categoryName,
           }
@@ -62,12 +62,12 @@ const ManageCategories = () => {
       } else {
         // Create new category
         const newId = Date.now().toString();
-        await set(dbRef(database, `HPC/GeneralMaster/Product Group/${newId}`), {
+        await set(dbRef(database, `MLC/GeneralMaster/Product Group/${newId}`), {
           id: newId,
           generalName: categoryName,
           genType: "Product Group",
           generalCode: 0,
-          companyID: "HPC",
+          companyID: "MLC",
         });
         toast.success("Category created!");
       }
@@ -93,7 +93,7 @@ const ManageCategories = () => {
     );
     if (!confirm) return;
     try {
-      await remove(dbRef(database, `HPC/GeneralMaster/Product Group/${id}`));
+      await remove(dbRef(database, `MLC/GeneralMaster/Product Group/${id}`));
       toast.success("Category deleted!");
       fetchCategories();
     } catch (err) {

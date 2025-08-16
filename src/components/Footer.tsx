@@ -28,24 +28,24 @@ export default function Footer() {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Harini Priya Crackers Logo"
+    alt="Muthu Lakshmi Crackers Logo"
     className="h-12 w-12 object-contain"
   />
 
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">Harini Priya </span>{' '}
-    <span className="text-[#ffb300]">Crackers</span>
+    <span className="text-black">Muthu Lakshmi </span>{' '}
+    <span className="text-[#B22222]">Crackers</span>
   </p>
 </div>
 
           <p className="text-sm mb-4">
-             Harini Priya Crackers  is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
+             Muthu Lakshmi Crackers  is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
           </p>
 
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
-              <FaMapMarkerAlt className="text-[#ffb300] mt-1" />
+              <FaMapMarkerAlt className="text-[#B22222] mt-1" />
               <span><b></b>{setting[0]?.Address}</span>
             </div>
             {/* <div className="flex items-start gap-2">
@@ -53,12 +53,12 @@ export default function Footer() {
               <span><b>Sivakasi Address: </b> 2/154 4th cross street, Chinnakam patti, Sivakasi to sattur road, Sivakasi</span>
             </div> */}
             <div className="flex items-start gap-2">
-              <FaEnvelope className="text-[#ffb300] mt-1" />
+              <FaEnvelope className="text-[#B22222] mt-1" />
               <span>{setting[0]?.EmailID}</span>
             </div>
             <div className="flex items-start gap-4 flex-wrap">
               <div className="flex items-center gap-2">
-                <FaPhoneAlt className="text-[#ffb300]" />
+                <FaPhoneAlt className="text-[#B22222]" />
                 <a
                   href={`tel:${setting[0]?.CellNO}`}
                   className="text-blue-600 hover:underline"
@@ -68,7 +68,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-2">
-                <FiPhoneCall className="text-green-600" />
+                <FiPhoneCall className="text-[#B22222]" />
                 <a
                   href={`tel:${setting[0]?.OfficeNo}`}
                   className="text-blue-600 hover:underline"

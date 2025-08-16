@@ -58,9 +58,9 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   let ordersRef;
 
   if (user) {
-    ordersRef = ref(database, `HPC/CustomerOrder/${user.uid}`);
+    ordersRef = ref(database, `MLC/CustomerOrder/${user.uid}`);
   } else if (guestPhone.length === 10) {
-    ordersRef = ref(database, `HPC/CustomerOrder/${guestPhone}`);
+    ordersRef = ref(database, `MLC/CustomerOrder/${guestPhone}`);
   } else {
     return;
   }
@@ -70,6 +70,7 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
     const filteredData = Object.fromEntries(
       Object.entries(rawData).filter(([_, order]) => !order.delete)
     );
+    console.log(filteredData);
     setOrders(filteredData);
   });
 
@@ -80,25 +81,25 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   return (
     <>
       <Helmet>
-        <title>Track Your Order | Harini Priya Crackers Online</title>
+        <title>Track Your Order | Muthu Lakshmi Crackers Online</title>
         <meta
           name="description"
-          content="Track your Harini Priya Crackers order in real-time. Get shipping status and delivery updates instantly."
+          content="Track your Muthu Lakshmi Crackers order in real-time. Get shipping status and delivery updates instantly."
         />
         <meta
           name="keywords"
-          content="track crackers order, fireworks delivery status, order tracking sivakasi, Harini Priya Crackers shipping"
+          content="track crackers order, fireworks delivery status, order tracking sivakasi, Muthu Lakshmi Crackers shipping"
         />
         <meta
           property="og:title"
-          content="Track Your Harini Priya Crackers Order"
+          content="Track Your Muthu Lakshmi Crackers Order"
         />
         <meta
           property="og:description"
-          content="Easily track your fireworks order placed at Harini Priya Crackers. Quick delivery from Sivakasi."
+          content="Easily track your fireworks order placed at Muthu Lakshmi Crackers. Quick delivery from Sivakasi."
         />
         <meta property="og:image" content="/meta/track-order.jpg" />
-        <meta property="og:url" content="https://harinipriyacrackers.com/track-order" />
+        <meta property="og:url" content="https://muthulakshmicrackers.com/track-order" />
       </Helmet>
       <section className="min-h-screen bg-gray-50 p-4">
         <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-6 md:p-10 space-y-10">
@@ -116,7 +117,7 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
       className="border border-gray-300 p-2 rounded-md shadow-sm w-full sm:w-64"
     />
     <button
-      className="bg-emerald-500 text-white px-4 py-2 rounded-md shadow hover:bg-emerald-600"
+      className="bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500] text-white px-4 py-2 rounded-md shadow hover:bg-emerald-600"
       onClick={() => setIsGuestSearch(true)}
       disabled={guestPhone.length !== 10}
     >
@@ -154,7 +155,7 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
                     Order #{order.billNo}
                   </h4>
                   <p className="text-sm text-gray-600 mt-1">
-                    {order.customer?.accounterName}
+                    {order.custName}
                   </p>
                   <p className="text-sm text-gray-500">
                     {order.deliveryAddress}

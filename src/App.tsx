@@ -32,6 +32,7 @@ import RequireAdmin from './components/RequireAdmin';
 import SocialNavBar from "./components/SocialNav";
 // import Modal from "./components/Modal"
 import { EditSettings } from "./components/AdminProduct"
+import ExcelAdmin from "./pages/ExcelAdmin"
 // import Modal from './components/Modal'
 
 const App = () => {
@@ -166,6 +167,7 @@ const App = () => {
         <Route path='/admin' element={<RequireAdmin><Admin /></RequireAdmin>} />
         <Route path='/product-admin' element={<ProductAdministration /> } />
         <Route path='/category-admin' element={<RequireAdmin> <CategoryAdministration /> </RequireAdmin>} />
+        <Route path='/excel-admin' element={<RequireAdmin> <ExcelAdmin /> </RequireAdmin>} />
         <Route path='/admin-settings' element={<RequireAdmin> <EditSettings /> </RequireAdmin>} />
         <Route path="/unauthorized" element={<Unauthorized />} />
       </Routes>
@@ -196,7 +198,7 @@ const App = () => {
           ref={whatsappRef}
           onMouseDown={handleMouseDown}
           onClick={openWhatsApp}
-          className="bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] hover:bg-green-600 text-white p-3 rounded-full shadow-lg cursor-move"
+          className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]  text-white p-3 rounded-full shadow-lg cursor-move"
         >
           <FaWhatsapp size={28} />
         </div>

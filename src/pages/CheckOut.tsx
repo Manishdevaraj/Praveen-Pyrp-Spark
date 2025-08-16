@@ -53,7 +53,7 @@ const CheckOut = () => {
   const [pinError, setPinError] = useState("");
 
   const getPackgeCost = async () => {
-    const userRef = ref(database, `HPC/Settings`);
+    const userRef = ref(database, `MLC/Settings`);
     const snapshot = await get(userRef);
     if (!snapshot.exists()) return;
     const item = snapshot.val();
@@ -333,7 +333,7 @@ const CheckOut = () => {
             {/* proceed Payment */}
             <div className="col-span-2 text-right mt-6">
               <button
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-200 shadow-md flex ml-auto items-center gap-2 cursor-pointer"
+                className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]  text-white font-semibold px-8 py-3 rounded-lg transition duration-200 shadow-md flex ml-auto items-center gap-2 cursor-pointer"
                 disabled={ loading}
                 onClick={handleSubmit(onSubmit)}              ><MdOutlinePayment className="text-2xl"/>
                 Proceed To Confirm
@@ -488,26 +488,9 @@ const CheckOut = () => {
             {/* proceed Payment */}
             <div className="col-span-2 text-right mt-6">
               <button
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-200 shadow-md flex ml-auto items-center gap-2 cursor-pointer"
+                className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white font-semibold px-8 py-3 rounded-lg transition duration-200 shadow-md flex ml-auto items-center gap-2 cursor-pointer"
                 disabled={ loading}
-                onClick={() => {
-                 
-                    handleSubmit(onSubmit)();
-                  if(!formData.name||!formData.district||!formData.state||!formData.addressLine1||!formData.phone||!formData.city||!formData.pinCode)
-                  {
-                    return;
-                  }
-                   if(checkoutItems.length === 0)
-                   {
-                    toast.error("Cart is Empty!");
-                    return;
-                   }
-
-                  // setShowPayment(true);
-                  setShowDialog(true);
-                 
-
-                }}
+                 onClick={handleSubmit(onSubmit)} 
               ><MdOutlinePayment className="text-2xl"/>
                 Proceed To Confirm
               </button>

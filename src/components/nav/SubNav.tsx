@@ -74,7 +74,7 @@ const SubNav = () => {
     className="flex items-center gap-2 cursor-pointer group transition-transform duration-300"
     onClick={() => navigate('/shop')} 
       >
-  <p className="flex items-center gap-2 bg-gradient-to-br from-[#00c853] to-[#b2ff59] text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
+  <p className="flex items-center gap-2 bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500] text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
     <FaShoppingBag className="text-white text-sm group-hover:rotate-6 transition-transform duration-300" />
     Shop Now
   </p>
@@ -112,7 +112,7 @@ const SubNav = () => {
           </PopoverContent>
         </Popover> */}
           <div className="flex items-center gap-2 cursor-pointer group transition-transform duration-300" onClick={downloadPriceList}>
-            <p className="flex items-center gap-2 bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white px-5 py-2 rounded-full shadow-md group-hover:scale-105 transition-all duration-300">
+            <p className="flex items-center gap-2 bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white px-5 py-2 rounded-full shadow-md group-hover:scale-105 transition-all duration-300">
               <FaDownload className="text-white text-sm group-hover:animate-bounce" />
               Download Price List
             </p>

@@ -13,7 +13,7 @@ const WishList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const productRef = ref(database, "HPC/Products");
+    const productRef = ref(database, "MLC/Products");
     get(productRef).then((snapshot) => {
       const allProducts = snapshot.val();
       if (allProducts && wishlistIds.length > 0) {

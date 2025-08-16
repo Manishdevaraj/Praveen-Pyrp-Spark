@@ -24,7 +24,7 @@ import toast from "react-hot-toast";
 import { generateOrderPdf } from "@/components/utility/generateOrderPDF";
 import { storage } from "@/Services/Firebase.config";
 import OrderDetailPDF from "@/components/OrderPdfToDownload";
-
+dayjs.extend(customParseFormat);
 const Admin = () => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
@@ -66,8 +66,23 @@ const Admin = () => {
         }
       }
 
-      setOrders(flatOrders);
-      setFilteredOrders(flatOrders);
+      console.log(flatOrders);
+      const format = "DD/MM/YYYY HH:mm:ss";
+
+const sortOrderindb = flatOrders.sort((a, b) => {
+  const dateA = dayjs(a.date, format, true);
+  const dateB = dayjs(b.date, format, true);
+
+  if (!dateA.isValid() && !dateB.isValid()) return 0;
+  if (!dateA.isValid()) return 1;
+  if (!dateB.isValid()) return -1;
+
+  // Newest first
+  return dateB.valueOf() - dateA.valueOf();
+});
+
+      setOrders(sortOrderindb);
+      setFilteredOrders(sortOrderindb);
     };
 
     CustomerOrders();
@@ -98,26 +113,8 @@ const Admin = () => {
           (delivered && s.delivered === "true")
         );
       })
-      .sort((a, b) => {
-        const format = "DD/MM/YYYY HH:mm:ss";
       
-        const dateA = dayjs(a.date, format, true); // true = strict parsing
-        const dateB = dayjs(b.date, format, true);
-      
-        if (!dateA.isValid() && !dateB.isValid()) return 0;
-        if (!dateA.isValid()) return 1;
-        if (!dateB.isValid()) return -1;
-      
-        // Sort by date DESC
-        if (dateA.isAfter(dateB)) return -1;
-        if (dateA.isBefore(dateB)) return 1;
-      
-        // Fallback to name ASC
-        const nameA = a.custName?.toLowerCase() || "";
-        const nameB = b.custName?.toLowerCase() || "";
-        return nameA.localeCompare(nameB);
-      });
-
+      // const sort=filtered
     setFilteredOrders(filtered);
   }, [searchTerm, orders, statusFilters]);
 
@@ -339,87 +336,7 @@ const Admin = () => {
     }
   };
 
-  // co3
-  //   const html = renderToStaticMarkup(
-  //     <OrderDetailPrint order={selectedOrder} setting={setting} />
-  //   );
-  
-  //   const response = await fetch(
-  //     "https://us-central1-CSC-crackers.cloudfunctions.net/generatePdf",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         html,
-  //         fileName: `Order-${selectedOrder.orderId}`,
-  //       }),
-  //     }
-  //   );
-  
-  //   if (!response.ok) {
-  //     toast.error("Failed to generate PDF");
-  //     return;
-  //   }
-  
-  //   const blob = await response.blob();
-  //   const pdfFile = new File([blob], `Order-${selectedOrder.orderId}.pdf`, {
-  //     type: "application/pdf",
-  //   });
-  
-  //   // if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-  //   //   try {
-  //   //     await navigator.share({
-  //   //       title: "Order Copy",
-  //   //       text: `Order ID: ${selectedOrder.orderId}`,
-  //   //       files: [pdfFile],
-  //   //     });
-  //   //   } catch (err) {
-  //   //     console.error("Sharing failed", err);
-  //   //     toast.error("Sharing cancelled or failed");
-  //   //   }
-  //   // } else {
-  //   //   // fallback for unsupported devices
-  //   //   const link = document.createElement("a");
-  //   //   link.href = URL.createObjectURL(blob);
-  //   //   link.download = pdfFile.name;
-  //   //   document.body.appendChild(link);
-  //   //   link.click();
-  //   //   link.remove();
-  //   //   toast.info("File downloaded. Sharing not supported on this device.");
-  //   // }
-  // };
-  
-    // const newWindow = window.open("", "_blank", "width=900,height=650");
-    // if (!newWindow) return;
-  
-    // newWindow.document.write(`
-    //   <html>
-    //     <head>
-    //       <title>Estimation</title>
-    //       <style>
-    //         body { font-family: Arial, sans-serif; padding: 20px; color: #000; }
-    //         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    //         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 14px; }
-    //         th { background-color: #f2f2f2; }
-    //       </style>
-    //     </head>
-    //     <body>
-    //       ${printContent.innerHTML}
-    //     </body>
-    //   </html>
-    // `);
-  
-    // newWindow.document.close();
-    // newWindow.onload = () => {
-    //   newWindow.focus();
-    //   setTimeout(() => {
-    //     newWindow.print();
-    //   }, 500);
-    // };
-  // };
-
+ 
   const handlePrint = () => {
     const printContent = document.getElementById("print-section");
     if (!printContent) return;
@@ -528,8 +445,13 @@ const sanitizePhone = (phone: string) => {
 const updateOrder=async()=>{
 
     const updatedOrder = { ...selectedOrder };
-
-    const originalOrderSnap = await getSingleCustomerOrder(selectedOrder.customer.id, selectedOrder.billNo);
+    console.log(updatedOrder);
+   if(!selectedOrder.userId)
+   {
+    toast.error("User ID is missing Order details Phone or Web order details is mis configured...");
+    return;
+   }
+    const originalOrderSnap = await getSingleCustomerOrder(selectedOrder.userId, selectedOrder.billNo);
     const originalOrder = originalOrderSnap;
     // console.log(originalOrder);
 
@@ -552,7 +474,7 @@ const updateOrder=async()=>{
       // updatedOrder.packedItemsPhoto = await handleImageUpload(imageFiles.packedItemsPhoto, "packedItems");
     }
 
-    await getupdateCustomerOrders(updatedOrder.customer.id,updatedOrder.billNo,updatedOrder);
+    await getupdateCustomerOrders(selectedOrder.userId,updatedOrder.billNo,updatedOrder);
 
     if (!originalOrder) {
       console.error("Original order not found.");
@@ -695,7 +617,7 @@ const updateOrder=async()=>{
             
               
               <div className="flex justify-between items-center mb-4">
-                <Button onClick={()=>updateOrder()}>Save</Button>
+                <Button onClick={()=>{updateOrder()}}>Save</Button>
                 <div className="print:hidden flex flex-col md:flex-row gap-2 justify-end mb-2">
                   <button
                     onClick={handlePrintOrderDetails}
