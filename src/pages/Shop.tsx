@@ -649,7 +649,7 @@ const Shop = ({isStandardCrackers}) => {
                       ([category, products]) => (
                         <React.Fragment key={category}>
                           {/* Desktop Table Category Row */}
-                          <tr className="hidden sm:table-row  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]">
+                          <tr className="hidden sm:table-row  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
                             <td colSpan={6} className="px-4 py-3 text-center border border-gray-300 rounded-md shadow">
                               <span className="text-base font-semibold text-white tracking-wide">
                                 {category}
@@ -658,7 +658,7 @@ const Shop = ({isStandardCrackers}) => {
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]">
+                          <tr className="block sm:hidden border-b   bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
                               <span className="text-sm font-medium text-white tracking-wide">
                                 {category}
