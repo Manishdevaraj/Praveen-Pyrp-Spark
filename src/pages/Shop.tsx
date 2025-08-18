@@ -288,7 +288,7 @@ const Shop = ({isStandardCrackers}) => {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [filteredproducts, setFilteredproducts] = useState([]);
   // const [viewMode, setViewMode] = useState('grid');
-  const [priceRange, setPriceRange] = useState([0, 500000]);
+  const [priceRange, setPriceRange] = useState([0, 20000]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortOption, setSortOption] = useState<string>("DEFAULT"); // NEW

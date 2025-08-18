@@ -39,14 +39,14 @@ const MainNav = ({onProfileClick}) => {
   <img
     src="/logo.png"
     alt="Ganesh Pyro Park"
-    className="h-[100px] w-[600px] object-contain"
+    className="h-[60px] w-[100px] object-contain"
   />
 
   {/* Text */}
-  {/* <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">Muthu Lakshmi</span>{' '}
-    <span className="text-[#B22222]">Crackers</span>
-  </p> */}
+  <p className="text-xl font-bold tracking-wide">
+    <span className="text-black">Ganesh Pyro </span>{' '}
+    <span className="text-[#B22222]">Park</span>
+  </p>
 </div>
 
 
