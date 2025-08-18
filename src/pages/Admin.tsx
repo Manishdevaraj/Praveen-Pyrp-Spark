@@ -24,7 +24,22 @@ import toast from "react-hot-toast";
 import { generateOrderPdf } from "@/components/utility/generateOrderPDF";
 import { storage } from "@/Services/Firebase.config";
 import OrderDetailPDF from "@/components/OrderPdfToDownload";
+import { getDatabase, ref, remove } from "firebase/database";
+
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 dayjs.extend(customParseFormat);
+
+
 const Admin = () => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
@@ -116,7 +131,7 @@ const sortOrderindb = flatOrders.sort((a, b) => {
       
       // const sort=filtered
     setFilteredOrders(filtered);
-  }, [searchTerm, orders, statusFilters]);
+  }, [searchTerm, orders, statusFilters,toggle]);
 
 
   const renderStatusIcon = (value) => {
@@ -133,7 +148,28 @@ const sortOrderindb = flatOrders.sort((a, b) => {
   const handleBack = () => {
     setSelectedOrder(null);
   };
+const deleteProduct = async (order) => {
+  try {
+    const db = getDatabase();
 
+    // Reference to the node you want to delete
+    const itemRef = ref(db, `GPP/CustomerOrder/${order.userId}/${order.orderId}`);
+
+// Delete the data
+remove(itemRef)
+  .then(() => {
+    console.log("Data deleted successfully!");
+     handleBack();
+     setToggle(!toggle);
+  })
+  .catch((error) => {
+    console.error("Error deleting data:", error);
+  });
+    console.log("Product deleted successfully");
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+};
   const toggleStatus = (status) => {
     setStatusFilters((prev) => ({
       ...prev,
@@ -586,13 +622,14 @@ const updateOrder=async()=>{
                       <td className="p-3">{renderStatusIcon(order.statuses?.payment)}</td>
                       <td className="p-3">{renderStatusIcon(order.statuses?.shipped)}</td>
                       <td className="p-3">{renderStatusIcon(order.statuses?.delivered)}</td>
-                      <td className="p-3 print:hidden">
+                      <td className="p-3 print:hidden flex items-center gap-2">
                         <button
                           onClick={() => handleOrderClick(order)}
                           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
                         >
                           View
                         </button>
+                       
                       </td>
                     </tr>
                   ))}
@@ -610,9 +647,29 @@ const updateOrder=async()=>{
         </>
       ) : (
         <div className="bg-white p-6 shadow rounded border">
+          <div className="flex justify-between items-center">
             <Button onClick={handleBack} className="mb-4">
               ← Back to Orders
             </Button>
+             <AlertDialog >
+  <AlertDialogTrigger><MdDeleteForever className="text-red-500 text-3xl" /></AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your order
+        and remove order data from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={() => deleteProduct(selectedOrder)}>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+          </div>
+            
+
             <h2 className="text-2xl font-semibold mb-4 text-gray-700">Order Details</h2>
             
               

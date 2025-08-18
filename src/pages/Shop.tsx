@@ -154,7 +154,7 @@ export const ProductTableRow = React.memo(({ product }) => {
                   </div>
                 ) : (
                   <Button
-                    className="bbg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white text-xs px-3 py-1"
+                    className="bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00] text-white text-xs px-3 py-1"
                     onClick={() => toggleCart(product)}
                   >
                     Add
@@ -310,16 +310,16 @@ const Shop = ({isStandardCrackers}) => {
 
 
 
-  const handleViewChange = (mode: "grid" | "list") => {
-    setSearchParams({ view: mode });
-  };
+  // const handleViewChange = (mode: "grid" | "list") => {
+  //   setSearchParams({ view: mode });
+  // };
 
-  const totalPages = Math.ceil(filteredproducts.length / itemsPerPage);
+  // const totalPages = Math.ceil(filteredproducts.length / itemsPerPage);
 
-  const paginatedProducts = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredproducts.slice(start, start + itemsPerPage);
-  }, [filteredproducts, currentPage]);
+  // const paginatedProducts = useMemo(() => {
+  //   const start = (currentPage - 1) * itemsPerPage;
+  //   return filteredproducts.slice(start, start + itemsPerPage);
+  // }, [filteredproducts, currentPage]);
 
   useEffect(() => {
     const delay = setTimeout(() => {
@@ -414,84 +414,84 @@ const Shop = ({isStandardCrackers}) => {
     );
   };
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    const maxPagesToShow = 3;
-    const startPage = Math.max(2, currentPage - 1);
-    const endPage = Math.min(totalPages - 1, currentPage + 1);
+  // const renderPageNumbers = () => {
+  //   const pages = [];
+  //   const maxPagesToShow = 3;
+  //   const startPage = Math.max(2, currentPage - 1);
+  //   const endPage = Math.min(totalPages - 1, currentPage + 1);
 
-    pages.push(
-      <PaginationItem key={1}>
-        <PaginationLink
-          isActive={currentPage === 1}
-          onClick={() => setCurrentPage(1)}
-        >
-          1
-        </PaginationLink>
-      </PaginationItem>
-    );
+  //   pages.push(
+  //     <PaginationItem key={1}>
+  //       <PaginationLink
+  //         isActive={currentPage === 1}
+  //         onClick={() => setCurrentPage(1)}
+  //       >
+  //         1
+  //       </PaginationLink>
+  //     </PaginationItem>
+  //   );
 
-    if (startPage > 2) {
-      pages.push(
-        <PaginationItem key="start-ellipsis">
-          <span className="px-2">...</span>
-        </PaginationItem>
-      );
-    }
+  //   if (startPage > 2) {
+  //     pages.push(
+  //       <PaginationItem key="start-ellipsis">
+  //         <span className="px-2">...</span>
+  //       </PaginationItem>
+  //     );
+  //   }
 
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <PaginationItem key={i}>
-          <PaginationLink
-            isActive={currentPage === i}
-            onClick={() => setCurrentPage(i)}
-          >
-            {i}
-          </PaginationLink>
-        </PaginationItem>
-      );
-    }
+  //   for (let i = startPage; i <= endPage; i++) {
+  //     pages.push(
+  //       <PaginationItem key={i}>
+  //         <PaginationLink
+  //           isActive={currentPage === i}
+  //           onClick={() => setCurrentPage(i)}
+  //         >
+  //           {i}
+  //         </PaginationLink>
+  //       </PaginationItem>
+  //     );
+  //   }
 
-    if (endPage < totalPages - 1) {
-      pages.push(
-        <PaginationItem key="end-ellipsis">
-          <span className="px-2">...</span>
-        </PaginationItem>
-      );
-    }
+  //   if (endPage < totalPages - 1) {
+  //     pages.push(
+  //       <PaginationItem key="end-ellipsis">
+  //         <span className="px-2">...</span>
+  //       </PaginationItem>
+  //     );
+  //   }
 
-    if (totalPages > 1) {
-      pages.push(
-        <PaginationItem key={totalPages}>
-          <PaginationLink
-            isActive={currentPage === totalPages}
-            onClick={() => setCurrentPage(totalPages)}
-          >
-            {totalPages}
-          </PaginationLink>
-        </PaginationItem>
-      );
-    }
+  //   if (totalPages > 1) {
+  //     pages.push(
+  //       <PaginationItem key={totalPages}>
+  //         <PaginationLink
+  //           isActive={currentPage === totalPages}
+  //           onClick={() => setCurrentPage(totalPages)}
+  //         >
+  //           {totalPages}
+  //         </PaginationLink>
+  //       </PaginationItem>
+  //     );
+  //   }
 
-    return pages;
-  };
+  //   return pages;
+  // };
 
   const groupedProducts = useMemo(() => {
     const groups: { [key: string]: any[] } = {};
-    paginatedProducts.forEach((product) => {
+    filteredproducts.forEach((product) => {
       const category = product.CategoryName || "Others";
       if (!groups[category]) groups[category] = [];
       groups[category].push(product);
     });
     return groups;
-  }, [paginatedProducts]);
+  }, [filteredproducts]);
 
   return (
     <>
       <div className="min-h-screen px-4 md:px-10 py-10 bg-gray-50">
         <Helmet>
           <title>
-            Shop Crackers Online |  Muthu Lakshmi Crackers Sivakasi
+            Shop Crackers Online |  Ganesh Pyro Park 
           </title>
           <meta
             name="description"
@@ -510,7 +510,7 @@ const Shop = ({isStandardCrackers}) => {
             content="Premium Sivakasi crackers at wholesale price. Shop safe and eco-friendly fireworks online now!"
           />
           <meta property="og:image" content="/meta/shop-banner.jpg" />
-          <meta property="og:url" content="https://muthulakshmicrackers.com/shop" />
+          <meta property="og:url" content="https://fromsivakasicrackers.com/shop" />
         </Helmet>
         <CartSummary />
 
@@ -518,7 +518,7 @@ const Shop = ({isStandardCrackers}) => {
           <div className="flex items-center gap-3 flex-wrap overflow-y-auto">
             <Drawer>
               <DrawerTrigger asChild>
-                <Button className="flex gap-2 items-center bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500] text-white">
+                <Button className="flex gap-2 items-center bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00] text-white">
                   <FaFilter /> Filter
                 </Button>
               </DrawerTrigger>
@@ -609,7 +609,7 @@ const Shop = ({isStandardCrackers}) => {
               We found {filteredproducts.length} items!
             </p>
           </div>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <button
               onClick={() => handleViewChange("grid")}
               className={`border p-2 rounded ${
@@ -626,43 +626,10 @@ const Shop = ({isStandardCrackers}) => {
             >
               <FaTable />
             </button>
-          </div>
+          </div> */}
         </div>
 
-        {viewMode === "grid" ? (
-          groupedProducts ? (
-            <>
-              {Object.entries(groupedProducts).map(([category, items]) => (
-                <div key={category} className="mb-8">
-                  {/* Category Heading */}
-                    <div className="mb-4">
-                      {/* Desktop View */}
-                      <div className="hidden sm:flex w-full justify-center items-center  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] border border-gray-300 rounded-md shadow px-4 py-2.5 text-white">
-                        <h2 className="text-base font-semibold text-white tracking-wide">
-                          {category}
-                        </h2>
-                      </div>
-
-                      {/* Mobile View */}
-                      <div className="flex sm:hidden w-full justify-center items-center  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] border-b border-gray-300 rounded px-3 py-2 shadow-sm text-white">
-                        <h2 className="text-sm font-medium text-white tracking-wide">
-                          {category}
-                        </h2>
-                      </div>
-                    </div>
-                  {/* Grid of Products */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {items.map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </>
-          ) : (
-            <p className="text-center text-sm text-gray-500">Loading...</p>
-          )
-        ) : (
+       
           <div className="w-full">
             <div className="inline-block min-w-full align-middle bg-white rounded shadow">
               <table className="w-full table-fixed sm:table-auto text-left text-sm">
@@ -682,7 +649,7 @@ const Shop = ({isStandardCrackers}) => {
                       ([category, products]) => (
                         <React.Fragment key={category}>
                           {/* Desktop Table Category Row */}
-                          <tr className="hidden sm:table-row  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
+                          <tr className="hidden sm:table-row  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]">
                             <td colSpan={6} className="px-4 py-3 text-center border border-gray-300 rounded-md shadow">
                               <span className="text-base font-semibold text-white tracking-wide">
                                 {category}
@@ -691,7 +658,7 @@ const Shop = ({isStandardCrackers}) => {
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
+                          <tr className="block sm:hidden border-b  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
                               <span className="text-sm font-medium text-white tracking-wide">
                                 {category}
@@ -722,9 +689,9 @@ const Shop = ({isStandardCrackers}) => {
               </table>
             </div>
           </div>
-        )}
+       
 
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <Pagination className="mt-6 justify-center">
             <PaginationContent>
               <PaginationItem>
@@ -750,7 +717,7 @@ const Shop = ({isStandardCrackers}) => {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        )}
+        )} */}
       </div>
       <Footer />
     </>

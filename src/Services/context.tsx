@@ -130,7 +130,7 @@ const [multiBrandCategories, setMultiBrandCategories] = useState<string[]>([]);
         const updates = {};
         for (const [productId, item] of Object.entries(guestCart))
            {
-          updates[`MLC/tempCart/${firebaseUser.uid}/${productId}`] = item;
+          updates[`GPP/tempCart/${firebaseUser.uid}/${productId}`] = item;
         }
 
         await update(ref(database), updates); // Push all to Firebase in one go
@@ -138,7 +138,7 @@ const [multiBrandCategories, setMultiBrandCategories] = useState<string[]>([]);
         const guestWishlist = JSON.parse(localStorage.getItem('guestWishlist') || '[]');
         // console.log(guestWishlist);
   if (guestWishlist.length > 0) {
-    const wishlistRef = ref(database, `MLC/Wishlist/${firebaseUser.uid}`);
+    const wishlistRef = ref(database, `GPP/Wishlist/${firebaseUser.uid}`);
     const snapshot = await get(wishlistRef);
     const existing = snapshot.exists() ? snapshot.val() : [];
 
@@ -171,7 +171,7 @@ useEffect(() => {
   }
 
   // ✅ For logged-in users: Sync from Firebase
-  const idsRef = ref(database, `MLC/Wishlist/${user.uid}`);
+  const idsRef = ref(database, `GPP/Wishlist/${user.uid}`);
   const unsubscribe = onValue(idsRef, (snapshot) => {
     const data = snapshot.val();
     setWishlistIds(data ?? []);
@@ -183,7 +183,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (user){
-    const cartRef = ref(database, `MLC/tempCart/${user?.uid}`);
+    const cartRef = ref(database, `GPP/tempCart/${user?.uid}`);
     const unsubscribe = onValue(cartRef, (snapshot) => {
       setCartItems(snapshot.exists() ? snapshot.val() : {});
     });
@@ -198,7 +198,7 @@ useEffect(() => {
 
   
  useEffect(() => {
-    const productsRef = ref(database, "MLC/Products");
+    const productsRef = ref(database, "GPP/Products");
     const unsubscribe = onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -216,7 +216,7 @@ useEffect(() => {
     return () => unsubscribe();
   }, []);
   useEffect(()=>{
- const TagsRef = ref(database, "MLC/GeneralMaster/Tags");
+ const TagsRef = ref(database, "GPP/GeneralMaster/Tags");
     const unsubscribe = onValue(TagsRef, (snapshot) => {
       const data = snapshot.val();
      
@@ -227,7 +227,7 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-  const CategoriesRef = ref(database, "MLC/GeneralMaster/Product Group");
+  const CategoriesRef = ref(database, "GPP/GeneralMaster/Product Group");
 
   const unsubscribe = onValue(CategoriesRef, (snapshot) => {
     const data = snapshot.val();
@@ -297,7 +297,7 @@ useEffect(() => {
         };
 
         await set(
-          ref(database, `MLC/Customers/${userCredential.user.uid}`),
+          ref(database, `GPP/Customers/${userCredential.user.uid}`),
           customerData
         );
       }
@@ -331,7 +331,7 @@ useEffect(() => {
           state: data.state,
         };
 
-      await set(ref(database, `MLC/Customers/${user.uid}`), customerData);
+      await set(ref(database, `GPP/Customers/${user.uid}`), customerData);
       toast.success("Account updated successfully!");
         setLoading(false);
     } catch (error: any) {
@@ -382,7 +382,7 @@ useEffect(() => {
     return;
   }
 
-    const idsRef = ref(database, `MLC/Wishlist/${user.uid}`);
+    const idsRef = ref(database, `GPP/Wishlist/${user.uid}`);
     const snapshot = await get(idsRef);
     let currentIds = snapshot.exists() ? snapshot.val() : [];
 
@@ -413,7 +413,7 @@ useEffect(() => {
 
     const productRef = ref(
       database,
-      `MLC/tempCart/${user.uid}/${product.productId}`
+      `GPP/tempCart/${user.uid}/${product.productId}`
     );
     const snapshot = await get(productRef);
 
@@ -455,7 +455,7 @@ const updateCartQty = async (
     return;
   }
 
-    const productRef = ref(database, `MLC/tempCart/${user.uid}/${productId}`);
+    const productRef = ref(database, `GPP/tempCart/${user.uid}/${productId}`);
   const snapshot = await get(productRef);
   // if (!snapshot.exists()) return;
 
@@ -487,7 +487,7 @@ const updateCartQty = async (
 
   const getUser = async () => {
     if (!user) return;
-    const userRef = ref(database, `MLC/Customers/${user.uid}`);
+    const userRef = ref(database, `GPP/Customers/${user.uid}`);
     const snapshot = await get(userRef);
     return snapshot.exists() ? snapshot.val() : null;
   };
@@ -584,7 +584,7 @@ async function uploadOrderImage(imageFile, orderId) {
         }
         const guestorderRef = ref(
         database,
-        `MLC/CustomerOrder/${formData.phone}/${orderId}`
+        `GPP/CustomerOrder/${formData.phone}/${orderId}`
       );
       
       const orderData = {
@@ -645,7 +645,7 @@ async function uploadOrderImage(imageFile, orderId) {
 
     const orderRef = ref(
         database,
-        `MLC/CustomerOrder/${user.uid}/${orderId}`
+        `GPP/CustomerOrder/${user.uid}/${orderId}`
       );
       if (useExistingAddress && !dbUser?.accounterName) {
         toast.error("Please update address on profile");
@@ -773,7 +773,7 @@ async function uploadOrderImage(imageFile, orderId) {
       for (const item of billProductList) {
         const productRef = ref(
           database,
-          `MLC/tempCart/${user.uid}/${item.productId}`
+          `GPP/tempCart/${user.uid}/${item.productId}`
         );
         await remove(productRef);
       }
@@ -793,34 +793,34 @@ async function uploadOrderImage(imageFile, orderId) {
 
   const getOrders = async () => {
     if (!user) return;
-    const orderRef = ref(database, `MLC/CustomerOrder/${user.uid}`);
+    const orderRef = ref(database, `GPP/CustomerOrder/${user.uid}`);
     const snapshot = await get(orderRef);
     return snapshot.exists() ? snapshot.val() : null;
   };
 
   const getBannerUrls = async () => {
-    const urlRef = ref(database, `MLC/Settings`);
+    const urlRef = ref(database, `GPP/Settings`);
     const snapshot = await get(urlRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
    const getCustomerOrders = async () => {
-    const coRef = ref(database, `MLC/CustomerOrder`);
+    const coRef = ref(database, `GPP/CustomerOrder`);
     const snapshot = await get(coRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
   const getSingleCustomerOrder = async (uid, orderid) => {
-    const coRef = ref(database, `MLC/CustomerOrder/${uid}/${orderid}`);
+    const coRef = ref(database, `GPP/CustomerOrder/${uid}/${orderid}`);
     const snapshot = await get(coRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
   const getupdateCustomerOrders = async (uid, orderid, data) => {
-    const coRef = ref(database, `MLC/CustomerOrder/${uid}/${orderid}`);
+    const coRef = ref(database, `GPP/CustomerOrder/${uid}/${orderid}`);
     await set(coRef, data);
     toast.success("Order Updated Successfully");
     // console.log(uid)
@@ -829,7 +829,7 @@ async function uploadOrderImage(imageFile, orderId) {
     // console.log(data)
   };
   async function getSparklerProducts() {
-  const coRef = ref(database, `MLC/Products`);
+  const coRef = ref(database, `GPP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -850,7 +850,7 @@ async function uploadOrderImage(imageFile, orderId) {
 }
 
  async function getMultiBrandProducts() {
-  const coRef = ref(database, `MLC/Products`);
+  const coRef = ref(database, `GPP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -870,7 +870,7 @@ async function uploadOrderImage(imageFile, orderId) {
   }
 }
 async function getgiftProducts() {
-  const coRef = ref(database, `MLC/Products`);
+  const coRef = ref(database, `GPP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -890,7 +890,7 @@ async function getgiftProducts() {
   }
 }
 async function getStandardGiftProducts() {
-  const coRef = ref(database, `MLC/Products`);
+  const coRef = ref(database, `GPP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {

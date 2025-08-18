@@ -164,7 +164,7 @@ const Cart = () => {
                   Total: ₹{totalAmount.toFixed(2)}
                 </p>
                 <button
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-2 rounded"
+                  className="bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00] text-white font-semibold px-6 py-2 rounded"
                   onClick={handleCheckout}
                 >
                   Checkout

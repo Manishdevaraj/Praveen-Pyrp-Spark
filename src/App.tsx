@@ -33,7 +33,7 @@ import SocialNavBar from "./components/SocialNav";
 // import Modal from "./components/Modal"
 import { EditSettings } from "./components/AdminProduct"
 import ExcelAdmin from "./pages/ExcelAdmin"
-// import Modal from './components/Modal'
+import Modal from './components/Modal'
 
 const App = () => {
   const { setting, products, cartItems, TAGS, user, getUser, setdbUser, userloading } = useFirebase();
@@ -147,7 +147,7 @@ const App = () => {
 
   return (
     <>
-      {/* <Modal isOpen={showModal} onClose={handleCloseModal} /> */}
+      <Modal isOpen={showModal} onClose={handleCloseModal} />
       <MainNav onProfileClick={onProfileClick} />
       <SubNav />
       <SocialNavBar/>
@@ -198,7 +198,7 @@ const App = () => {
           ref={whatsappRef}
           onMouseDown={handleMouseDown}
           onClick={openWhatsApp}
-          className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]  text-white p-3 rounded-full shadow-lg cursor-move"
+          className="bg-gradient-to-r from-[#000000] via-[#ff0000] to-[#ffd700]  text-white p-3 rounded-full shadow-lg cursor-move"
         >
           <FaWhatsapp size={28} />
         </div>

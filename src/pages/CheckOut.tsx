@@ -53,7 +53,7 @@ const CheckOut = () => {
   const [pinError, setPinError] = useState("");
 
   const getPackgeCost = async () => {
-    const userRef = ref(database, `MLC/Settings`);
+    const userRef = ref(database, `GPP/Settings`);
     const snapshot = await get(userRef);
     if (!snapshot.exists()) return;
     const item = snapshot.val();
@@ -111,6 +111,12 @@ const CheckOut = () => {
   };
 
   const onSubmit = (data) => {
+    if(!user)
+    {
+      toast.error("Please log in to continue");
+      navigate("/login?page=checkout");
+      return;
+    }
     setFormData(data);
     setShowDialog(true);
   };

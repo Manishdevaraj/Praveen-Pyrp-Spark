@@ -38,15 +38,15 @@ const MainNav = ({onProfileClick}) => {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Muthu Lakshmi Crackers"
-    className="h-12 w-12 object-contain"
+    alt="Ganesh Pyro Park"
+    className="h-12 w-[300px] object-contain"
   />
 
   {/* Text */}
-  <p className="text-xl font-bold tracking-wide">
+  {/* <p className="text-xl font-bold tracking-wide">
     <span className="text-black">Muthu Lakshmi</span>{' '}
     <span className="text-[#B22222]">Crackers</span>
-  </p>
+  </p> */}
 </div>
 
 
@@ -61,7 +61,8 @@ const MainNav = ({onProfileClick}) => {
           />
           <button
             onClick={handleSearch}
-            className="px-4 py-2 bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white"
+            className="px-4 py-2 bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]
+ text-white"
           >
             <FaSearch />
           </button>
@@ -184,10 +185,10 @@ const MainNav = ({onProfileClick}) => {
               
             </PopoverContent>
           </Popover> */}
-           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/shop')}>
+           {/* <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/shop')}>
                   <FaShop />
             <span className="whitespace-nowrap">Shop Now</span>
-              </div>
+              </div> */}
 
           {/* Cart */}
           <div
@@ -196,7 +197,8 @@ const MainNav = ({onProfileClick}) => {
           >
             <FaShoppingCart />
             <span className="whitespace-nowrap">Cart</span>
-            <span className="absolute -top-2 -right-3  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]  text-white text-xs px-2 py-0.5 rounded-full">
+            <span className="absolute -top-2 -right-3  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]
+  text-white text-xs px-2 py-0.5 rounded-full">
               {Object.keys(cartItems).length}
             </span>
           </div>

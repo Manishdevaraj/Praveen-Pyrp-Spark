@@ -74,7 +74,7 @@ const SubNav = () => {
     className="flex items-center gap-2 cursor-pointer group transition-transform duration-300"
     onClick={() => navigate('/shop')} 
       >
-  <p className="flex items-center gap-2 bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500] text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
+  <p className="flex items-center gap-2 bg-gradient-to-r from-[#000000] via-[#ff0000] to-[#ffd700] text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
     <FaShoppingBag className="text-white text-sm group-hover:rotate-6 transition-transform duration-300" />
     Shop Now
   </p>
@@ -111,12 +111,12 @@ const SubNav = () => {
             </div>
           </PopoverContent>
         </Popover> */}
-          <div className="flex items-center gap-2 cursor-pointer group transition-transform duration-300" onClick={downloadPriceList}>
+          {/* <div className="flex items-center gap-2 cursor-pointer group transition-transform duration-300" onClick={downloadPriceList}>
             <p className="flex items-center gap-2 bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white px-5 py-2 rounded-full shadow-md group-hover:scale-105 transition-all duration-300">
               <FaDownload className="text-white text-sm group-hover:animate-bounce" />
               Download Price List
             </p>
-          </div>
+          </div> */}
         <div className="flex items-center justify-end ml-4 gap-4 flex-wrap">
           <div className="flex items-center">
             <FiPhoneCall size={20} />
@@ -176,7 +176,7 @@ const SubNav = () => {
     <DropdownMenuItem onClick={() => navigate('/aboutus')}>About Us</DropdownMenuItem>
     <DropdownMenuItem onClick={() => navigate('/contactus')}>Contact Us</DropdownMenuItem>
     <DropdownMenuItem onClick={() => navigate('/termsandconditions')}>Terms & Conditions</DropdownMenuItem>
-    <DropdownMenuItem onClick={downloadPriceList}>Download Price List</DropdownMenuItem>
+    {/* <DropdownMenuItem onClick={downloadPriceList}>Download Price List</DropdownMenuItem> */}
     {/* <DropdownMenuSub>
       <DropdownMenuSubTrigger>Download Price List</DropdownMenuSubTrigger>
         <DropdownMenuSubContent className="w-48 rounded-md bg-white shadow-lg border p-2 space-y-1">

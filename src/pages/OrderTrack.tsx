@@ -81,25 +81,25 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   return (
     <>
       <Helmet>
-        <title>Track Your Order | Muthu Lakshmi Crackers Online</title>
+        <title>Track Your Order | Ganesh Pyro Park Online</title>
         <meta
           name="description"
-          content="Track your Muthu Lakshmi Crackers order in real-time. Get shipping status and delivery updates instantly."
+          content="Track your Ganesh Pyro Park order in real-time. Get shipping status and delivery updates instantly."
         />
         <meta
           name="keywords"
-          content="track crackers order, fireworks delivery status, order tracking sivakasi, Muthu Lakshmi Crackers shipping"
+          content="track crackers order, fireworks delivery status, order tracking sivakasi, Ganesh Pyro Park shipping"
         />
         <meta
           property="og:title"
-          content="Track Your Muthu Lakshmi Crackers Order"
+          content="Track Your Ganesh Pyro Park Order"
         />
         <meta
           property="og:description"
-          content="Easily track your fireworks order placed at Muthu Lakshmi Crackers. Quick delivery from Sivakasi."
+          content="Easily track your fireworks order placed at Ganesh Pyro Park. Quick delivery from Sivakasi."
         />
         <meta property="og:image" content="/meta/track-order.jpg" />
-        <meta property="og:url" content="https://muthulakshmicrackers.com/track-order" />
+        <meta property="og:url" content="https://fromsivakasicrackers.com/track-order" />
       </Helmet>
       <section className="min-h-screen bg-gray-50 p-4">
         <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-6 md:p-10 space-y-10">

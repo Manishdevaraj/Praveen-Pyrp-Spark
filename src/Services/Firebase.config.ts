@@ -11,14 +11,14 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyA5KAVqoyNlwJxJTALUAYmIQMczEU_7lzk",
-  authDomain: "bullsstoreeasy-8d4e0.firebaseapp.com",
-  databaseURL: "https://bullsstoreeasy-8d4e0-default-rtdb.firebaseio.com",
-  projectId: "bullsstoreeasy-8d4e0",
-  storageBucket: "bullsstoreeasy-8d4e0.appspot.com",
-  messagingSenderId: "349987837127",
-  appId: "1:349987837127:web:b40fc8dd4e51e82606dae2",
-  measurementId: "G-SG4LY0JSFH"
+  apiKey: "AIzaSyDFu9RZab_aK7rSyZtvowwWdA4ckYDC_2I",
+  authDomain: "bullsstoreeasy-1d42b.firebaseapp.com",
+  databaseURL: "https://bullsstoreeasy-1d42b-default-rtdb.firebaseio.com",
+  projectId: "bullsstoreeasy-1d42b",
+  storageBucket: "bullsstoreeasy-1d42b.appspot.com",
+  messagingSenderId: "437450676499",
+  appId: "1:437450676499:web:5d75d355186ad5efcfe2e6",
+  measurementId: "G-RY0272JCEV"
 };
 
 // Initialize Firebase

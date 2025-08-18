@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { useFirebase } from '@/Services/context';
 import { FcGoogle } from 'react-icons/fc';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/Services/Firebase.config';
 import toast from 'react-hot-toast';
@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 const Login = () => {
   const navigate = useNavigate();
   const { signIn, gooleSignIn, user, loading } = useFirebase();
-
+const [searchParams] = useSearchParams();
   const {
     register,
     handleSubmit,
@@ -26,6 +26,14 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     await signIn(data.email, data.password);
+  };
+  const page = searchParams.get('page');
+   const gogleSubmit = async () => {
+    await gooleSignIn();
+    if(page=='checkout')
+    {
+      navigate("/checkout");
+    }
   };
 
   const handleForgotPassword = async () => {
@@ -47,7 +55,7 @@ const Login = () => {
         {/* Google Sign In */}
         <button
           className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2 hover:bg-gray-100 transition cursor-pointer"
-          onClick={gooleSignIn}
+          onClick={gogleSubmit}
         >
           <FcGoogle className="text-xl" />
           <span className="text-sm font-medium text-gray-700">Sign in with Google</span>

@@ -28,19 +28,19 @@ export default function Footer() {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Muthu Lakshmi Crackers Logo"
+    alt="Ganesh Pyro Park Logo"
     className="h-12 w-12 object-contain"
   />
 
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">Muthu Lakshmi </span>{' '}
-    <span className="text-[#B22222]">Crackers</span>
+    <span className="text-black">Ganesh Pyro Park</span>{' '}
+    {/* <span className="text-[#B22222]">Park</span> */}
   </p>
 </div>
 
           <p className="text-sm mb-4">
-             Muthu Lakshmi Crackers  is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
+             Ganesh Pyro Park  is your one-stop destination to buy quality fireworks at the cheapest prices in Market. We offer a wide range of original Sivakasi crackers, fancy fireworks, and sparklers for all occasions. Celebrate safely and joyfully with trusted products from Market's leading cracker store.
           </p>
 
           <div className="space-y-2 text-sm">

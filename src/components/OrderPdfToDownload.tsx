@@ -77,7 +77,7 @@ const OrderPdfToDownload = ({ order }: { order: any }) => {
           />
              </div>
           <h1 style={{ margin: 0, fontSize: "24px", color: "#333" }}>
-            Muthu Lakshmi Crackers
+            Ganesh Pyro Park
           </h1>
           <p style={{ margin: "5px 0", fontSize: "14px", color: "#555" }}>
             {setting[0]?.Address}
@@ -182,7 +182,7 @@ const OrderPdfToDownload = ({ order }: { order: any }) => {
 
         {/* Footer */}
         <p style={{ textAlign: "center", marginTop: "30px", fontSize: "13px" }}>
-          Thank you for your purchase! – <strong>Muthu Lakshmi Crackers</strong>
+          Thank you for your purchase! – <strong>Ganesh Pyro Park</strong>
         </p>
       </div>
     </div>

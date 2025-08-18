@@ -1,8 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import Shop from './Shop'
-import { AddProductToShop, EditProduct } from '@/components/AdminProduct'
-// import { ExportProductDataToExcel, ImportProductDataFromExcel } from '@/components/ExcelAdmin'
+import { AddProductToShop, EditProduct, PrintPriceList } from '@/components/AdminProduct'
 
 const ProductAdministration = () => {
   return (
@@ -11,9 +10,12 @@ const ProductAdministration = () => {
 
            <AddProductToShop/>
            <EditProduct/>
-           {/* <ExportProductDataToExcel/>
-           <ImportProductDataFromExcel/> */}
           </div>
+          <div className='flex items-center justify-center'>
+
+           <PrintPriceList/>
+          </div>
+
     <Shop isStandardCrackers={true}/>
     </>
   )

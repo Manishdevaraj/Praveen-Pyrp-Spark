@@ -263,7 +263,7 @@ export const ExportProductDataToExcel = () => {
 //           uomid: uomId || "",
 //         };
 
-//         const newRef = ref(database, `MLC/Products/${product.productId}`);
+//         const newRef = ref(database, `GPP/Products/${product.productId}`);
 //         const snap = await get(newRef);
 
 //         if (snap.exists()) {
@@ -430,7 +430,7 @@ export const ImportProductDataFromExcel = () => {
 
   useEffect(() => {
     const getUom = async () => {
-      const orderRef = ref(database, `MLC/GeneralMaster`);
+      const orderRef = ref(database, `GPP/GeneralMaster`);
       const snapshot = await get(orderRef);
       setGeneralMaster(snapshot.val());
     };
@@ -552,7 +552,7 @@ export const ImportProductDataFromExcel = () => {
   };
 
   const uploadImage = async (file: File) => {
-    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}_${file.name}`);
+    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}_${file.name}`);
     await uploadBytes(imgRef, file);
     return await getDownloadURL(imgRef);
   };
@@ -614,7 +614,7 @@ export const ImportProductDataFromExcel = () => {
           uomid: uomId || "",
         };
 
-        const newRef = ref(database, `MLC/Products/${product.productId}`);
+        const newRef = ref(database, `GPP/Products/${product.productId}`);
         const snap = await get(newRef);
 
         if (snap.exists()) {

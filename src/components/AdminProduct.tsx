@@ -79,7 +79,7 @@ const AdminProduct = ({ handleAddProduct }) => {
 
 
    useEffect(() => {
-  const CategoriesRef = ref(database, "MLC/GeneralMaster/Product Group");
+  const CategoriesRef = ref(database, "GPP/GeneralMaster/Product Group");
 
   const unsubscribe = onValue(CategoriesRef, (snapshot) => {
     const data = snapshot.val();
@@ -144,7 +144,7 @@ export default AdminProduct;
 const handleDeleteProduct = async (product) => {
   if (!product?.id) return alert("Product ID not found");
 
-  const productRef = dbRef(database, `MLC/Products/${product.id}`);
+  const productRef = dbRef(database, `GPP/Products/${product.id}`);
   try {
     await remove(productRef);
     alert("Product deleted successfully.");
@@ -206,7 +206,7 @@ export const AddProductToShop = () => {
   useEffect(()=>{
            
          const getCatagory=async()=>{
-                const orderRef = ref(database, `MLC/GeneralMaster`);
+                const orderRef = ref(database, `GPP/GeneralMaster`);
                     const snapshot = await get(orderRef);
                     setGeneralMaster(snapshot.val())
                     // return snapshot.exists() ?  : null;
@@ -254,14 +254,14 @@ export const AddProductToShop = () => {
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
 
   const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -304,7 +304,7 @@ export const AddProductToShop = () => {
         id: ProductdbId,
       };
 
-      const productRef = dbRef(database, `MLC/Products/${ProductdbId}`);
+      const productRef = dbRef(database, `GPP/Products/${ProductdbId}`);
       await set(productRef, finalData);
 
       toast.success("Product added successfully!");
@@ -731,7 +731,7 @@ export const EditProduct=()=>{
   const [generalMaster,setGeneralMaster]=useState();
   useEffect(()=>{
       const getCatagory=async()=>{
-            const orderRef = ref(database, `MLC/GeneralMaster`);
+            const orderRef = ref(database, `GPP/GeneralMaster`);
                 const snapshot = await get(orderRef);
                 setGeneralMaster(snapshot.val())
                 // return snapshot.exists() ?  : null;
@@ -806,13 +806,13 @@ export const EditProduct=()=>{
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}-${imageFile.name}`);
+    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}-${imageFile.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
    const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/MLC/products/${Date.now()}-${imageFile2.name}`);
+    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}-${imageFile2.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -832,7 +832,7 @@ export const EditProduct=()=>{
         productImageURL: imageUrl ? imageUrl : selectedProduct.productImageURL,
         productImageURL2: imageUrl2 ? imageUrl2 : (selectedProduct?.productImageURL2?selectedProduct.productImageURL2:""),
       };
-     const productRef = dbRef(database, `MLC/Products/${selectedProduct.id}`);
+     const productRef = dbRef(database, `GPP/Products/${selectedProduct.id}`);
      await set(productRef, finalData);
 
       toast.success("Product updated successfully!");
@@ -1259,7 +1259,7 @@ export const EditSettings = () => {
 
   useEffect(() => {
     const getSetting = async () => {
-      const settingRef = dbRef(database, `MLC/Settings`);
+      const settingRef = dbRef(database, `GPP/Settings`);
       const snapshot = await get(settingRef);
       if (snapshot.exists()) {
         const data = snapshot.val();
@@ -1288,7 +1288,7 @@ export const EditSettings = () => {
 
     const newUrls: string[] = [];
     for (const file of Array.from(files)) {
-      const url = await handleFileUpload(file, `MLC/banners/${type}/${Date.now()}-${file.name}`);
+      const url = await handleFileUpload(file, `GPP/banners/${type}/${Date.now()}-${file.name}`);
       newUrls.push(url);
     }
     handleChange(
@@ -1321,7 +1321,7 @@ export const EditSettings = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      await update(dbRef(database, `MLC/Settings`), {
+      await update(dbRef(database, `GPP/Settings`), {
         '0': { ...formData }
       });
       setSettings(formData);
@@ -1470,7 +1470,7 @@ return (
       onChange={async (e) => {
         const file = e.target.files?.[0];
         if (file) {
-          const url = await handleFileUpload(file, `MLC/pdf/${file.name}`);
+          const url = await handleFileUpload(file, `GPP/pdf/${file.name}`);
           handleChange("pdfURL", url);
         }
       }}
@@ -1551,4 +1551,164 @@ return (
 
 );
 
+};
+
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
+export const PrintPriceList = () => {
+  const { products, Categories, setting } = useFirebase();
+  const [gmaster, setgmaster] = useState<any>(null);
+
+  useEffect(() => {
+    const cartRef = ref(database, `FC/GeneralMaster`);
+    const unsubscribe = onValue(cartRef, (snapshot) => {
+      setgmaster(snapshot.exists() ? snapshot.val() : {});
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (!Categories || !products || !setting || !gmaster) {
+    return null;
+  }
+
+  console.log(gmaster);
+
+  const groupedData = Object.values(Categories)
+    .map((cat: any) => ({
+      ...cat,
+      products: products.filter((p: any) => p.productGroupId === cat.id),
+    }))
+    .filter((cat) => cat.products.length > 0);
+
+  // Helper to get UOM name by ID
+  const getUOMName = (id: string | number) => {
+    return gmaster?.UOM?.[id]?.generalName || "";
+  };
+
+  const handlePrintPDF = async () => {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    let yPos = 10;
+
+    // ===== Load Logo =====
+    const loadImage = async (url: string) => {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      return new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+    };
+
+    const logo = await loadImage("/logo.png");
+
+    // ===== Logo =====
+const logoWidth = 40;
+const logoHeight = 30;
+const logoX = (pageWidth - logoWidth) / 2; // center horizontally
+doc.addImage(logo, "PNG", logoX, yPos, logoWidth, logoHeight);
+yPos += logoHeight + 10; // add some spacing after logo
+
+    // ===== Company Name =====
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text(`${setting[0].CompanyName}`, pageWidth / 2, yPos, { align: "center" });
+    yPos += 8;
+
+    // ===== Address =====
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`${setting[0].Address}`, pageWidth / 2, yPos, {
+      align: "center",
+      maxWidth: pageWidth - 20,
+    });
+    yPos += 8;
+
+    // ===== Phone Numbers =====
+    doc.setFontSize(10);
+    const phoneText = `Phone: ${setting[0].CellNO || ""}${
+      setting[0].orderContactNo1 ? " / " + setting[0].orderContactNo2 : ""
+    }`;
+    doc.text(phoneText, pageWidth / 2, yPos, { align: "center" });
+    yPos += 12;
+
+    let count = 1;
+
+    groupedData.forEach((cat: any) => {
+      // ===== Calculate table height for page break check =====
+      const tempDoc = new jsPDF();
+      autoTable(tempDoc, {
+        head: [["No", "Product Name", "Per", "List Price", "Discount %", "Sales Price", "Qty", "Amount"]],
+        body: cat.products.map((p: any, idx: number) => [
+          idx + 1,
+          p.productName || "",
+          `${p.per || ""} ${getUOMName(p.uom)}`,
+          Number(p.beforeDiscPrice?.toFixed(2)) || "",
+          p.discPerc || "",
+          Number(p.salesPrice?.toFixed(2)) || "",
+          "",
+          "",
+        ]),
+        theme: "grid",
+        styles: { fontSize: 10 },
+      });
+
+      const tableHeight = (tempDoc as any).lastAutoTable.finalY - 10;
+      const neededHeight = tableHeight + 10 + 6;
+
+      if (pageHeight - yPos < neededHeight) {
+        doc.addPage();
+        yPos = 10;
+      }
+
+      // ===== Category Heading =====
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text(cat.generalName, pageWidth / 2, yPos, { align: "center" });
+      yPos += 6;
+
+      // ===== Real Table =====
+      autoTable(doc, {
+        startY: yPos,
+        head: [["No", "Product Name", "Per", "List Price", "Discount %", "Sales Price", "Qty", "Amount"]],
+        body: cat.products.map((p: any) => [
+          count++,
+          p.productName || "",
+          `${p.per || ""} ${getUOMName(p.uom)}`,
+          Number(p.beforeDiscPrice?.toFixed(2)) || "",
+          p.discPerc || "",
+          Number(p.salesPrice?.toFixed(2)) || "",
+          "",
+          "",
+        ]),
+        theme: "grid",
+        headStyles: {
+          fillColor: [128, 0, 128],
+          textColor: 255,
+          halign: "center",
+        },
+        styles: {
+          halign: "center",
+          fontSize: 10,
+        },
+        columnStyles: {
+          1: { halign: "left" },
+        },
+      });
+
+      yPos = (doc as any).lastAutoTable.finalY + 10;
+    });
+
+    doc.save("price_list.pdf");
+  };
+
+  return (
+    <Button onClick={handlePrintPDF} className="mb-2">
+      Print Product List
+    </Button>
+  );
 };
