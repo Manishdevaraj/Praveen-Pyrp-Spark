@@ -1350,6 +1350,7 @@ return (
         ["OfficeNo", "Office No"],
         ["EmailID", "Email ID"],
         ["GSTIN", "GSTIN"],
+        ["PriceRange","Price Range"],
         ["WhatsappNo", "Whatsapp No"],
       ].map(([field, label]) => (
         <div key={field} className="flex flex-col">

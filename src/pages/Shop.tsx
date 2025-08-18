@@ -284,7 +284,7 @@ export const ProductTableRow = React.memo(({ product }) => {
 
 const Shop = ({isStandardCrackers}) => {
   const { searchTerm, getSparklerProducts,getMultiBrandProducts, TAGS, Categories,standardCategories,
-        multiBrandCategories } = useFirebase();
+        multiBrandCategories,setting } = useFirebase();
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [filteredproducts, setFilteredproducts] = useState([]);
   // const [viewMode, setViewMode] = useState('grid');

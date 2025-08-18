@@ -39,7 +39,7 @@ const MainNav = ({onProfileClick}) => {
   <img
     src="/logo.png"
     alt="Ganesh Pyro Park"
-    className="h-12 w-[300px] object-contain"
+    className="h-[100px] w-[600px] object-contain"
   />
 
   {/* Text */}
