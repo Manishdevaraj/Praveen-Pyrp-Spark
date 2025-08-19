@@ -47,7 +47,7 @@ export const ExportProductDataToExcel = () => {
       "Sales Price": p.salesPrice || 0,
       "Per Unit": p.per || "",
       "Unit-uomid": p.uom || "",
-      "Unit-[uom]": GeneralMaster.UOM[p.uom].generalName || "",
+      "Unit-[uom]": GeneralMaster.UOM[p.uom]?.generalName || "",
       "Tag Name": p.tag || "",
       "Contains": p.contains || "",
       "Sorting Order": p.sortingorder || "",
