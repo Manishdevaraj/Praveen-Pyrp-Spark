@@ -60,15 +60,36 @@ export const ProductCard = React.memo(({ product }) => {
 export const ProductTableRow = React.memo(({ product }) => {
   const { toggleWishList, wishlistIds, toggleCart, cartItems, updateCartQty } =
     useFirebase();
+
   const isInWishlist = wishlistIds.includes(product.id);
   const currentProduct = cartItems?.[product.productId];
   const qty = currentProduct?.qty || 0;
 
+  // ✅ Support multiple product images
+  const productImages = [
+    product.productImageURL,
+    product.productImageURL2,
+    product.productImageURL3,
+    product.productImageURL4,
+    product.productImageURL5,
+  ].filter(Boolean);
+
   const [zoomImage, setZoomImage] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+
+  // ✅ Flicker auto-switch effect
+  useEffect(() => {
+    if (productImages.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % productImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [productImages]);
 
   return (
     <>
-       <tr className="block sm:hidden border-b p-2">
+      {/* ✅ Mobile Row */}
+      <tr className="block sm:hidden border-b p-2">
         <td className="block w-full">
           <div className="relative flex items-center justify-between gap-2 w-full overflow-hidden">
             {/* Out of Stock Badge */}
@@ -85,9 +106,9 @@ export const ProductTableRow = React.memo(({ product }) => {
               }`}
               onClick={() => setZoomImage(true)}
             >
-              {product.productImageURL ? (
+              {productImages.length > 0 ? (
                 <img
-                  src={product.productImageURL}
+                  src={productImages[activeImage]}
                   alt={product.productName}
                   className={`max-w-full max-h-full object-contain transition ${
                     !product.active ? "grayscale opacity-40" : ""
@@ -115,15 +136,12 @@ export const ProductTableRow = React.memo(({ product }) => {
                 </span>
               </div>
 
-              <div className="mt-2 text-[10px] text-left">
-                {qty > 0 && (
-                  <div className="bg-emerald-50 text-emerald-700 font-semibold px-2 py-[3px] rounded-md shadow-inner border border-emerald-100 w-fit">
-                    Total: ₹{(qty * product.salesPrice).toFixed(2)}
-                  </div>
-                )}
-              </div>
+              {qty > 0 && (
+                <div className="mt-2 bg-emerald-50 text-emerald-700 font-semibold px-2 py-[3px] rounded-md shadow-inner border border-emerald-100 w-fit text-[10px]">
+                  Total: ₹{(qty * product.salesPrice).toFixed(2)}
+                </div>
+              )}
             </div>
-
 
             {/* Action */}
             <div className="flex-shrink-0">
@@ -161,53 +179,53 @@ export const ProductTableRow = React.memo(({ product }) => {
                   </Button>
                 )
               ) : (
-                <span className="text-[11px] text-gray-400 italic">Not Available</span>
+                <span className="text-[11px] text-gray-400 italic">
+                  Not Available
+                </span>
               )}
             </div>
           </div>
         </td>
       </tr>
 
-
-
-      {/* ✅ Desktop View */}
+      {/* ✅ Desktop Row */}
       <tr className="hidden sm:table-row border-b relative">
-        <td className="p-2 w-[60px] lg:w-[90px] relative">
+        <td className="p-2 w-[90px] relative">
           {!product.active && (
             <div className="absolute top-1 left-1 bg-gradient-to-r from-[#b8860b] via-[#ffd700] to-[#ffb300] text-white text-[10px] font-semibold px-2 py-[2px] rounded z-10">
               Out of Stock
             </div>
           )}
-          {product.productImageURL ? (
-            <div
-              className="w-20 h-20 bg-white rounded-md overflow-hidden flex items-center justify-center cursor-pointer"
-              onClick={() => setZoomImage(true)}
-            >
+          <div
+            className="w-20 h-20 bg-white rounded-md overflow-hidden flex items-center justify-center cursor-pointer"
+            onClick={() => setZoomImage(true)}
+          >
+            {productImages.length > 0 ? (
               <img
-                src={product.productImageURL}
+                src={productImages[activeImage]}
                 alt={product.productName}
                 className={`max-w-full max-h-full object-contain ${
                   !product.active ? "opacity-50 grayscale" : ""
                 }`}
               />
-            </div>
-          ) : (
-            <div className="w-20 h-20 bg-gray-200 flex items-center justify-center text-xs text-gray-500 rounded-md">
-              No Image
-            </div>
-          )}
+            ) : (
+              <div className="w-20 h-20 bg-gray-200 flex items-center justify-center text-xs text-gray-500 rounded-md">
+                No Image
+              </div>
+            )}
+          </div>
         </td>
+
         <td className="p-2 w-[120px]">{product.productName}</td>
+
         <td className="p-2 w-[90px] text-red-500 line-through">
-        {product.discPerc > 0 &&(
-          <td className="p-2 w-[90px] text-red-500 line-through">
-            ₹{product.beforeDiscPrice?.toFixed(2)}
-          </td>
-        )}
+          {product.discPerc > 0 && `₹${product.beforeDiscPrice?.toFixed(2)}`}
         </td>
+
         <td className="p-2 w-[90px] text-emerald-600">
           ₹{product.salesPrice?.toFixed(2)}
         </td>
+
         <td className="p-2 w-[140px]">
           {product.active ? (
             qty > 0 ? (
@@ -247,28 +265,43 @@ export const ProductTableRow = React.memo(({ product }) => {
           )}
         </td>
 
-        {/* ✅ Total Amount */}
         <td className="p-2 w-[100px] font-semibold text-green-700">
           ₹{(qty * product.salesPrice).toFixed(2)}
         </td>
       </tr>
 
-
-      {/* ✅ Modal for zoomed image */}
+      {/* ✅ Zoom Modal */}
       {zoomImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={() => setZoomImage(false)}
         >
           <div
-            className="relative bg-white rounded-md p-2 max-w-[90%] max-h-[90%]"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            className="relative bg-white rounded-md p-2 max-w-[90%] max-h-[90%] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={product.productImageURL}
+              src={productImages[activeImage]}
               alt={product.productName}
-              className="max-h-[80vh] object-contain rounded"
+              className="max-h-[80vh] object-contain rounded mb-2"
             />
+            {productImages.length > 1 && (
+              <div className="flex gap-2 mt-1">
+                {productImages.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img}
+                    alt={`Thumb ${idx}`}
+                    onClick={() => setActiveImage(idx)}
+                    className={`w-14 h-14 object-cover rounded border cursor-pointer ${
+                      activeImage === idx
+                        ? "border-green-500"
+                        : "border-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
             <button
               onClick={() => setZoomImage(false)}
               className="absolute top-2 right-2 bg-black text-white px-2 py-1 text-sm rounded-full"
