@@ -52,8 +52,10 @@ export const ExportProductDataToExcel = () => {
       "Contains": p.contains || "",
       "Sorting Order": p.sortingorder || "",
       "Active": p.active ? "Yes" : "No",
+      "ImageUrl1": p?.productImageURL || "",
+      "ImageUrl2": p?.productImageURL2 || "",
     }));
-
+   console.log(data);
     // Create workbook
     const ws = XLSX.utils.json_to_sheet(data);
     const wb = XLSX.utils.book_new();
