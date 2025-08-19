@@ -148,7 +148,7 @@ const sortOrderindb = flatOrders.sort((a, b) => {
   const handleBack = () => {
     setSelectedOrder(null);
   };
-const deleteProduct = async (order) => {
+const deleteOrder = async (order) => {
   try {
     const db = getDatabase();
 
@@ -165,9 +165,9 @@ remove(itemRef)
   .catch((error) => {
     console.error("Error deleting data:", error);
   });
-    console.log("Product deleted successfully");
+    console.log("Order deleted successfully");
   } catch (error) {
-    console.error("Error deleting product:", error);
+    console.error("Error deleting Order:", error);
   }
 };
   const toggleStatus = (status) => {
@@ -663,7 +663,7 @@ const updateOrder=async()=>{
     </AlertDialogHeader>
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction onClick={() => deleteProduct(selectedOrder)}>Continue</AlertDialogAction>
+      <AlertDialogAction onClick={() => deleteOrder(selectedOrder)}>Continue</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>

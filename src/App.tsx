@@ -136,7 +136,7 @@ const App = () => {
   };
 
   const openWhatsApp = () => {
-    const phoneRaw = setting[0]?.CellNO || '';
+    const phoneRaw = setting[0]?.WhatsappNo || '';
     const phone = phoneRaw.replace(/\s+/g, ''); // Removes all spaces
     const message = encodeURIComponent("Hi! I want to inquire about your products.");
     // console.log( `https://wa.me/${phone}?text=${message}`);

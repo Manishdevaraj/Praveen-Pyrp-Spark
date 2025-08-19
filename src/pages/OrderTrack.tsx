@@ -58,9 +58,9 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   let ordersRef;
 
   if (user) {
-    ordersRef = ref(database, `MLC/CustomerOrder/${user.uid}`);
+    ordersRef = ref(database, `GPP/CustomerOrder/${user.uid}`);
   } else if (guestPhone.length === 10) {
-    ordersRef = ref(database, `MLC/CustomerOrder/${guestPhone}`);
+    ordersRef = ref(database, `GPP/CustomerOrder/${guestPhone}`);
   } else {
     return;
   }

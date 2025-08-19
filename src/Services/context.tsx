@@ -767,7 +767,7 @@ async function uploadOrderImage(imageFile, orderId) {
       //   }
       // }
  
-    toast.success("✅ Order placed successfully! and WhatsApp message sent!");
+    toast.success("✅ Order placed successfully!");
     // toast.success("✅ Order placed successfully!");
 
       for (const item of billProductList) {

@@ -725,7 +725,8 @@ export const EditProduct=()=>{
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setselectedProduct] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+   const [removeImage1, setRemoveImage1] = useState(false);
+const [removeImage2, setRemoveImage2] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [generalMaster,setGeneralMaster]=useState();
@@ -817,33 +818,44 @@ export const EditProduct=()=>{
     return await getDownloadURL(snapshot.ref);
   };
    const handleSubmit = async () => {
-    try {
-      setLoading(true);
-      const imageUrl = await handleImageUpload();
-      let imageUrl2=null;
-      if (imageFile2)
-        {
-          imageUrl2 = await handleImageUpload2();
-      }
-
-
-      const finalData = {
-        ...selectedProduct,
-        productImageURL: imageUrl ? imageUrl : selectedProduct.productImageURL,
-        productImageURL2: imageUrl2 ? imageUrl2 : (selectedProduct?.productImageURL2?selectedProduct.productImageURL2:""),
-      };
-     const productRef = dbRef(database, `GPP/Products/${selectedProduct.id}`);
-     await set(productRef, finalData);
-
-      toast.success("Product updated successfully!");
-      setImageFile(null);
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to Edit product");
-    } finally {
-      setLoading(false);
+  try {
+    setLoading(true);
+    const imageUrl = await handleImageUpload();
+    let imageUrl2 = null;
+    if (imageFile2) {
+      imageUrl2 = await handleImageUpload2();
     }
-  };
+
+    const finalData = {
+      ...selectedProduct,
+      productImageURL: removeImage1
+        ? "" // if user deleted image1
+        : imageUrl
+        ? imageUrl
+        : selectedProduct.productImageURL,
+
+      productImageURL2: removeImage2
+        ? "" // if user deleted image2
+        : imageUrl2
+        ? imageUrl2
+        : selectedProduct?.productImageURL2 || "",
+    };
+
+    const productRef = dbRef(database, `GPP/Products/${selectedProduct.id}`);
+    await set(productRef, finalData);
+
+    toast.success("Product updated successfully!");
+    setImageFile(null);
+    setImageFile2(null);
+    setRemoveImage1(false);
+    setRemoveImage2(false);
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to Edit product");
+  } finally {
+    setLoading(false);
+  }
+};
   if(!Categories) return;
   return (
     <Dialog>
@@ -908,28 +920,40 @@ export const EditProduct=()=>{
          <Button onClick={()=>setselectedProduct(null)} className="mb-4">
             ← Back 
           </Button>
-        {selectedProduct?.productImageURL && (
-          <div className="col-span-2">
-           
-            <p className="font-semibold">Current Image:</p>
-            <img
-              src={selectedProduct.productImageURL}
-              alt="Current Product"
-              className="w-32 h-32 object-cover border rounded"
-            />
-          </div>
-          )}
-          {selectedProduct?.productImageURL2 && (
-          <div className="col-span-2">
-           
-            <p className="font-semibold">Current Image:</p>
-            <img
-              src={selectedProduct.productImageURL2}
-              alt="Current Product"
-              className="w-32 h-32 object-cover border rounded"
-            />
-          </div>
-          )}
+        {selectedProduct?.productImageURL && !removeImage1 && (
+  <div className="relative w-32 h-32">
+    <img
+      src={selectedProduct.productImageURL}
+      alt="Current Product"
+      className="w-32 h-32 object-cover border rounded"
+    />
+    <button
+      type="button"
+      onClick={() => setRemoveImage1(true)}
+      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+    >
+      ❌
+    </button>
+  </div>
+)}
+
+{selectedProduct?.productImageURL2 && !removeImage2 && (
+  <div className="relative w-32 h-32">
+    <img
+      src={selectedProduct.productImageURL2}
+      alt="Current Product"
+      className="w-32 h-32 object-cover border rounded"
+    />
+    <button
+      type="button"
+      onClick={() => setRemoveImage2(true)}
+      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+    >
+      ❌
+    </button>
+  </div>
+)}
+
 
        {selectedProduct && (
   <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
@@ -1404,10 +1428,10 @@ return (
     <div className="grid gap-4">
       {[
         ["YouTube", "YouTube URL"],
-        ["Instagram", "Instagram URL"],
-        ["Twitter", "Twitter URL"],
-        ["PlayStore", "Play Store URL"],
-        ["Facebook", "Facebook URL"],
+        ["instagram", "Instagram URL"],
+        ["twitter", "Twitter URL"],
+        ["playstore", "Play Store URL"],
+        ["facebook", "Facebook URL"],
       ].map(([field, label]) => (
         <div key={field} className="flex flex-col">
           <label className="mb-1 text-sm font-medium text-gray-600">{label}</label>

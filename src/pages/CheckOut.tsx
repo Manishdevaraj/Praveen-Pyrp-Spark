@@ -127,7 +127,7 @@ const CheckOut = () => {
   return (
     <>
       <div className="min-h-screen bg-gray-100 py-10 px-4 md:px-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
+        <div className="max-w-7xl  mx-auto flex flex-col md:flex-row gap-8">
           {/* 🧾 Order Summary */}
          { !ShowPayment&&<div className="w-full md:w-1/3 h-fit bg-white rounded-2xl shadow-xl p-6 relative">
             <div className="flex justify-between items-center mb-6 border-b pb-3">
@@ -372,7 +372,7 @@ const CheckOut = () => {
           {!user&&!ShowPayment && (
           <div className="w-full md:w-2/3 bg-white rounded-2xl shadow-lg p-6">
             {/* 👤 Login Prompt */}
-            <div className="bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm">
+            <div className="bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm ">
               <h3 className="text-lg font-semibold text-gray-800 mb-1">You haven’t logged in yet</h3>
               <p className="text-sm text-gray-600">
                 Tracking your orders and checkout will be easier for registered users. Would you like to log in?
@@ -389,7 +389,7 @@ const CheckOut = () => {
                 </button>
               </div>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Billing Details</h2>
+          { user&&<> <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Billing Details</h2>
           
               <form className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div className="col-span-2">
@@ -500,7 +500,7 @@ const CheckOut = () => {
               ><MdOutlinePayment className="text-2xl"/>
                 Proceed To Confirm
               </button>
-            </div>
+            </div></>}
             {/* Confirm Order */}
             {/* <div className="col-span-2 text-right mt-6">
               <button

@@ -28,16 +28,16 @@ const SocialNavBar = () => {
           href= {setting[0]?.YouTube || "#"}
         />}
         
-      {setting[0]?.Facebook&&<SocialButton
+      {setting[0]?.facebook&&<SocialButton
         icon={<FaFacebookF className="text-blue-600" />}
         label="Facebook"
-        href={setting[0]?.Facebook || "#"}
+        href={setting[0]?.facebook   || "#"}
       />}
 
-      {setting[0]?.Instagram&&<SocialButton
+      {setting[0]?.instagram&&<SocialButton
         icon={<FaInstagram className="text-pink-600" />}
         label="Instagram"
-        href= {setting[0]?.Instagram || "#"}
+        href= {setting[0]?.instagram || "#"}
       />}
 
       {setting[0]?.PlayStore &&<SocialButton

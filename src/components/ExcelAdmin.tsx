@@ -12,7 +12,7 @@ export const ExportProductDataToExcel = () => {
 
   useEffect(()=>{
     const getUom=async()=>{
-                    const orderRef = ref(database, `MLC/GeneralMaster`);
+                    const orderRef = ref(database, `GPP/GeneralMaster`);
                         const snapshot = await get(orderRef);
                         setGeneralMaster(snapshot.val())
                         // return snapshot.exists() ?  : null;
