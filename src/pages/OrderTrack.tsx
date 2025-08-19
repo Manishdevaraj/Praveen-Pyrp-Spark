@@ -285,6 +285,30 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
                 </div>
               </div>
 
+              {/* images */}
+              <div className="flex md:flex-row flex-col gap-[60px]">
+                <div>
+                <label>Transport Copy Image</label>
+                {selectedOrder?.image&&
+                  <img
+                    src={selectedOrder?.image}
+                    alt={`Order Image`}
+                    className="w-[200px] h-[200px] object-cover rounded-lg shadow-md"
+                  />
+                }
+              </div>
+              <div>
+                <label>packedItems Image</label>
+                {selectedOrder?.packedItemsPhoto&&
+                  <img
+                    src={selectedOrder?.packedItemsPhoto}
+                    alt={`Order Image`}
+                    className="w-[200px] h-[200px]  object-cover rounded-lg shadow-md"
+                  />
+                }
+              </div>
+              </div>
+
               {/* Items Table */}
               <div>
                 <h4 className="text-lg font-semibold text-gray-700 mb-4">

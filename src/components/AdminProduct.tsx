@@ -359,6 +359,8 @@ export const AddProductToShop = () => {
       toast.error("Failed to add product");
     } finally {
       setLoading(false);
+      setImageFile(null);
+      setImageFile2(null);
     }
   };
 
@@ -625,6 +627,9 @@ export const AddProductToShop = () => {
               onChange={(e) => setImageFile(e.target.files[0])}
             />
             {imageFile && (
+                <Button onClick={() => setImageFile(null)}>Remove Image</Button>
+              )}
+            {imageFile && (
               <div className="mt-2">
                 <p className="font-semibold">New Image Preview:</p>
                 <img
@@ -637,11 +642,15 @@ export const AddProductToShop = () => {
           </div>
           <div className="sm:col-span-2">
             <label>Upload Image File2 For Product</label>
+            
             <Input
               type="file"
               accept="image/*"
               onChange={(e) => setImageFile2(e.target.files[0])}
             />
+            {imageFile2 && (
+                <Button onClick={() => setImageFile2(null)}>Remove Image</Button>
+              )}
             {imageFile2 && (
               <div className="mt-2">
                 <p className="font-semibold">New Image2 Preview:</p>
@@ -1210,6 +1219,9 @@ const [removeImage2, setRemoveImage2] = useState(false);
                 accept="image/*"
                 onChange={(e) => setImageFile(e.target.files[0])}
               />
+              {imageFile && (
+                <Button onClick={() => setImageFile(null)}>Remove Image</Button>
+              )}
             </div>
 
             {/* Image Preview */}
@@ -1221,6 +1233,7 @@ const [removeImage2, setRemoveImage2] = useState(false);
                   alt="New Preview"
                   className="w-32 h-32 object-cover border rounded"
                 />
+
               </div>
             )}
 
@@ -1231,6 +1244,9 @@ const [removeImage2, setRemoveImage2] = useState(false);
                 accept="image/*"
                 onChange={(e) => setImageFile2(e.target.files[0])}
               />
+              {imageFile2 && (
+                <Button onClick={() => setImageFile2(null)}>Remove Image</Button>
+              )}
             </div>
 
             {/* Image Preview */}
