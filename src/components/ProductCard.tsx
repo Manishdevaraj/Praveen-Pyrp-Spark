@@ -274,7 +274,7 @@ export const ProductCardComponent: React.FC<ProductCardProps> = React.memo(({ pr
             </div>
           ) : product.active ? (
             <Button
-              className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white px-6 py-2 rounded-full mx-auto"
+              className=" bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400 text-white px-6 py-2 rounded-full mx-auto"
               onClick={() => toggleCart(product)}
             >
               Add To Cart

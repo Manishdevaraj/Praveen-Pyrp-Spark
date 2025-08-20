@@ -153,7 +153,7 @@ const deleteOrder = async (order) => {
     const db = getDatabase();
 
     // Reference to the node you want to delete
-    const itemRef = ref(db, `GPP/CustomerOrder/${order.userId}/${order.orderId}`);
+    const itemRef = ref(db, `PRP/CustomerOrder/${order.userId}/${order.orderId}`);
 
 // Delete the data
 remove(itemRef)

@@ -58,9 +58,9 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   let ordersRef;
 
   if (user) {
-    ordersRef = ref(database, `GPP/CustomerOrder/${user.uid}`);
+    ordersRef = ref(database, `PRP/CustomerOrder/${user.uid}`);
   } else if (guestPhone.length === 10) {
-    ordersRef = ref(database, `GPP/CustomerOrder/${guestPhone}`);
+    ordersRef = ref(database, `PRP/CustomerOrder/${guestPhone}`);
   } else {
     return;
   }
@@ -81,25 +81,25 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
   return (
     <>
       <Helmet>
-        <title>Track Your Order | Ganesh Pyro Park Online</title>
+        <title>Track Your Order | Praveen PyroPark Online</title>
         <meta
           name="description"
-          content="Track your Ganesh Pyro Park order in real-time. Get shipping status and delivery updates instantly."
+          content="Track your Praveen PyroPark order in real-time. Get shipping status and delivery updates instantly."
         />
         <meta
           name="keywords"
-          content="track crackers order, fireworks delivery status, order tracking sivakasi, Ganesh Pyro Park shipping"
+          content="track crackers order, fireworks delivery status, order tracking sivakasi, Praveen PyroPark shipping"
         />
         <meta
           property="og:title"
-          content="Track Your Ganesh Pyro Park Order"
+          content="Track Your Praveen PyroPark Order"
         />
         <meta
           property="og:description"
-          content="Easily track your fireworks order placed at Ganesh Pyro Park. Quick delivery from Sivakasi."
+          content="Easily track your fireworks order placed at Praveen PyroPark. Quick delivery from Sivakasi."
         />
         <meta property="og:image" content="/meta/track-order.jpg" />
-        <meta property="og:url" content="https://fromsivakasicrackers.com/track-order" />
+        <meta property="og:url" content=" https://praveenpyropark.com/track-order" />
       </Helmet>
       <section className="min-h-screen bg-gray-50 p-4">
         <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-6 md:p-10 space-y-10">
@@ -152,16 +152,16 @@ const [isGuestSearch, setIsGuestSearch] = useState(false);
                   className="bg-white border border-blue-100 hover:border-blue-400 p-6 rounded-xl shadow-sm hover:shadow-md cursor-pointer transition"
                 >
                   <h4 className="text-lg font-bold text-blue-800">
-                    Order #{order.billNo}
+                    Order #{order?.billNo}
                   </h4>
                   <p className="text-sm text-gray-600 mt-1">
-                    {order.custName}
+                    {order?.custName}
                   </p>
                   <p className="text-sm text-gray-500">
-                    {order.deliveryAddress}
+                    {order?.deliveryAddress}
                   </p>
                   <p className="text-sm text-gray-500">
-                    {order.billProductList.length} items
+                    {order?.billProductList?.length} items
                   </p>
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-xs text-gray-400">

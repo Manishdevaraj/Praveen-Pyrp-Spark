@@ -38,20 +38,20 @@ const MainNav = ({onProfileClick}) => {
   {/* Logo */}
   <img
     src="/logo.png"
-    alt="Ganesh Pyro Park"
+    alt="Praveen PyroPark"
     className="h-[60px] w-[100px] object-contain"
   />
 
   {/* Text */}
   <p className="text-xl font-bold tracking-wide">
-    <span className="text-black">Ganesh Pyro </span>{' '}
-    <span className="text-[#B22222]">Park</span>
+    <span className="text-black">Praveen</span>{' '}
+    <span className="text-yellow-400">PyroPark</span>
   </p>
 </div>
 
 
         {/* Search */}
-        <div className="flex w-full md:w-1/2 border border-[#B22222] rounded overflow-hidden">
+        <div className="flex w-full md:w-1/2 border border-yellow-400 rounded overflow-hidden">
           <input
             type="text"
             placeholder="Search for items..."
@@ -61,7 +61,7 @@ const MainNav = ({onProfileClick}) => {
           />
           <button
             onClick={handleSearch}
-            className="px-4 py-2 bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]
+            className="px-4 py-2 bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400
  text-white"
           >
             <FaSearch />
@@ -150,13 +150,13 @@ const MainNav = ({onProfileClick}) => {
           </Popover>
 
           {/* Wishlist */}
-          {/* <div
+          <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => navigate('/shop/multibrand')}
           >
             <FaShop />
             <span className="whitespace-nowrap">Shop Now</span>
-          </div> */}
+          </div>
           {/* <Popover>
             <PopoverTrigger asChild>
               <div className="flex items-center gap-2 cursor-pointer">
@@ -197,7 +197,7 @@ const MainNav = ({onProfileClick}) => {
           >
             <FaShoppingCart />
             <span className="whitespace-nowrap">Cart</span>
-            <span className="absolute -top-2 -right-3  bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00]
+            <span className="absolute -top-2 -right-3 bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400
   text-white text-xs px-2 py-0.5 rounded-full">
               {Object.keys(cartItems).length}
             </span>

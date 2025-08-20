@@ -15,7 +15,7 @@ const RequireAdmin = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchSetting = async () => {
       try {
-        const settingRef = ref(database, "GPP/Settings");
+        const settingRef = ref(database, "PRP/Settings");
         const snapshot = await get(settingRef);
         if (snapshot.exists()) {
           setSetting(snapshot.val());

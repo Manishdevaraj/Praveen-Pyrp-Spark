@@ -79,7 +79,7 @@ const AdminProduct = ({ handleAddProduct }) => {
 
 
    useEffect(() => {
-  const CategoriesRef = ref(database, "GPP/GeneralMaster/Product Group");
+  const CategoriesRef = ref(database, "PRP/GeneralMaster/Product Group");
 
   const unsubscribe = onValue(CategoriesRef, (snapshot) => {
     const data = snapshot.val();
@@ -144,7 +144,7 @@ export default AdminProduct;
 const handleDeleteProduct = async (product) => {
   if (!product?.id) return alert("Product ID not found");
 
-  const productRef = dbRef(database, `GPP/Products/${product.id}`);
+  const productRef = dbRef(database, `PRP/Products/${product.id}`);
   try {
     await remove(productRef);
     alert("Product deleted successfully.");
@@ -206,7 +206,7 @@ export const AddProductToShop = () => {
   useEffect(()=>{
            
          const getCatagory=async()=>{
-                const orderRef = ref(database, `GPP/GeneralMaster`);
+                const orderRef = ref(database, `PRP/GeneralMaster`);
                     const snapshot = await get(orderRef);
                     setGeneralMaster(snapshot.val())
                     // return snapshot.exists() ?  : null;
@@ -254,14 +254,14 @@ export const AddProductToShop = () => {
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/PRP/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
 
   const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}`);
+    const imgRef = storageRef(storage, `images/PRP/products/${Date.now()}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -304,7 +304,7 @@ export const AddProductToShop = () => {
         id: ProductdbId,
       };
 
-      const productRef = dbRef(database, `GPP/Products/${ProductdbId}`);
+      const productRef = dbRef(database, `PRP/Products/${ProductdbId}`);
       await set(productRef, finalData);
 
       toast.success("Product added successfully!");
@@ -741,7 +741,7 @@ const [removeImage2, setRemoveImage2] = useState(false);
   const [generalMaster,setGeneralMaster]=useState();
   useEffect(()=>{
       const getCatagory=async()=>{
-            const orderRef = ref(database, `GPP/GeneralMaster`);
+            const orderRef = ref(database, `PRP/GeneralMaster`);
                 const snapshot = await get(orderRef);
                 setGeneralMaster(snapshot.val())
                 // return snapshot.exists() ?  : null;
@@ -816,13 +816,13 @@ const [removeImage2, setRemoveImage2] = useState(false);
 
   const handleImageUpload = async () => {
     if (!imageFile) return "";
-    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}-${imageFile.name}`);
+    const imgRef = storageRef(storage, `images/PRP/products/${Date.now()}-${imageFile.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile);
     return await getDownloadURL(snapshot.ref);
   };
    const handleImageUpload2 = async () => {
     if (!imageFile2) return "";
-    const imgRef = storageRef(storage, `images/GPP/products/${Date.now()}-${imageFile2.name}`);
+    const imgRef = storageRef(storage, `images/PRP/products/${Date.now()}-${imageFile2.name}`);
     const snapshot = await uploadBytes(imgRef, imageFile2);
     return await getDownloadURL(snapshot.ref);
   };
@@ -850,7 +850,7 @@ const [removeImage2, setRemoveImage2] = useState(false);
         : selectedProduct?.productImageURL2 || "",
     };
 
-    const productRef = dbRef(database, `GPP/Products/${selectedProduct.id}`);
+    const productRef = dbRef(database, `PRP/Products/${selectedProduct.id}`);
     await set(productRef, finalData);
 
     toast.success("Product updated successfully!");
@@ -1299,7 +1299,7 @@ export const EditSettings = () => {
 
   useEffect(() => {
     const getSetting = async () => {
-      const settingRef = dbRef(database, `GPP/Settings`);
+      const settingRef = dbRef(database, `PRP/Settings`);
       const snapshot = await get(settingRef);
       if (snapshot.exists()) {
         const data = snapshot.val();
@@ -1328,7 +1328,7 @@ export const EditSettings = () => {
 
     const newUrls: string[] = [];
     for (const file of Array.from(files)) {
-      const url = await handleFileUpload(file, `GPP/banners/${type}/${Date.now()}-${file.name}`);
+      const url = await handleFileUpload(file, `PRP/banners/${type}/${Date.now()}-${file.name}`);
       newUrls.push(url);
     }
     handleChange(
@@ -1361,7 +1361,7 @@ export const EditSettings = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      await update(dbRef(database, `GPP/Settings`), {
+      await update(dbRef(database, `PRP/Settings`), {
         '0': { ...formData }
       });
       setSettings(formData);
@@ -1511,7 +1511,7 @@ return (
       onChange={async (e) => {
         const file = e.target.files?.[0];
         if (file) {
-          const url = await handleFileUpload(file, `GPP/pdf/${file.name}`);
+          const url = await handleFileUpload(file, `PRP/pdf/${file.name}`);
           handleChange("pdfURL", url);
         }
       }}

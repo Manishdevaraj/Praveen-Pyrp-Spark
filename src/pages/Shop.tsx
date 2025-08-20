@@ -254,7 +254,7 @@ export const ProductTableRow = React.memo(({ product }) => {
               </div>
             ) : (
               <Button
-                className=" bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] text-white text-sm"
+                className=" bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400    text-white text-sm"
                 onClick={() => toggleCart(product)}
               >
                 Add
@@ -343,9 +343,9 @@ const Shop = ({isStandardCrackers}) => {
 
 
 
-  // const handleViewChange = (mode: "grid" | "list") => {
-  //   setSearchParams({ view: mode });
-  // };
+  const handleViewChange = (mode: "grid" | "list") => {
+    setSearchParams({ view: mode });
+  };
 
   // const totalPages = Math.ceil(filteredproducts.length / itemsPerPage);
 
@@ -524,7 +524,7 @@ const Shop = ({isStandardCrackers}) => {
       <div className="min-h-screen px-4 md:px-10 py-10 bg-gray-50">
         <Helmet>
           <title>
-            Shop Crackers Online |  Ganesh Pyro Park 
+            Shop Crackers Online |  Praveen PyroPark
           </title>
           <meta
             name="description"
@@ -543,7 +543,7 @@ const Shop = ({isStandardCrackers}) => {
             content="Premium Sivakasi crackers at wholesale price. Shop safe and eco-friendly fireworks online now!"
           />
           <meta property="og:image" content="/meta/shop-banner.jpg" />
-          <meta property="og:url" content="https://fromsivakasicrackers.com/shop" />
+          <meta property="og:url" content=" https://praveenpyropark.com/shop" />
         </Helmet>
         <CartSummary />
 
@@ -551,7 +551,7 @@ const Shop = ({isStandardCrackers}) => {
           <div className="flex items-center gap-3 flex-wrap overflow-y-auto">
             <Drawer>
               <DrawerTrigger asChild>
-                <Button className="flex gap-2 items-center bg-gradient-to-br from-[#1a1a1a] via-[#ff6f00] to-[#ffdd00] text-white">
+                <Button className="flex gap-2 items-center bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400 text-white">
                   <FaFilter /> Filter
                 </Button>
               </DrawerTrigger>
@@ -626,7 +626,7 @@ const Shop = ({isStandardCrackers}) => {
                             className={`rounded-xl px-4 py-2 text-sm font-medium shadow-sm transition-colors border 
                           ${
                             selectedCategories.includes(category)
-                              ? "bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500] text-white border-emerald-500"
+                              ? "bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]"
                               : "bg-white text-gray-800 hover:bg-gray-100"
                           }`}
                           >
@@ -642,11 +642,11 @@ const Shop = ({isStandardCrackers}) => {
               We found {filteredproducts.length} items!
             </p>
           </div>
-          {/* <div className="flex gap-2">
+           <div className="flex gap-2">
             <button
               onClick={() => handleViewChange("grid")}
               className={`border p-2 rounded ${
-                viewMode === "grid" ? "bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500]" : "bg-white"
+                viewMode === "grid" ? "bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400" : "bg-white"
               }`}
             >
               <FaThLarge />
@@ -654,15 +654,49 @@ const Shop = ({isStandardCrackers}) => {
             <button
               onClick={() => handleViewChange("list")}
               className={`border p-2 rounded ${
-                viewMode === "list" ? "bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFA500]" : "bg-white"
+                viewMode === "list" ? "bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400" : "bg-white"
               }`}
             >
               <FaTable />
             </button>
-          </div> */}
+          </div> 
         </div>
 
        
+            {viewMode === "grid" ? (
+          groupedProducts ? (
+            <>
+              {Object.entries(groupedProducts).map(([category, items]) => (
+                <div key={category} className="mb-8">
+                  {/* Category Heading */}
+                    <div className="mb-4">
+                      {/* Desktop View */}
+                      <div className="hidden sm:flex w-full justify-center items-center  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] border border-gray-300 rounded-md shadow px-4 py-2.5 text-white">
+                        <h2 className="text-base font-semibold text-white tracking-wide">
+                          {category}
+                        </h2>
+                      </div>
+
+                      {/* Mobile View */}
+                      <div className="flex sm:hidden w-full justify-center items-center  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400] border-b border-gray-300 rounded px-3 py-2 shadow-sm text-white">
+                        <h2 className="text-sm font-medium text-white tracking-wide">
+                          {category}
+                        </h2>
+                      </div>
+                    </div>
+                  {/* Grid of Products */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {items.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p className="text-center text-sm text-gray-500">Loading...</p>
+          )
+        ) : (
           <div className="w-full">
             <div className="inline-block min-w-full align-middle bg-white rounded shadow">
               <table className="w-full table-fixed sm:table-auto text-left text-sm">
@@ -691,7 +725,7 @@ const Shop = ({isStandardCrackers}) => {
                           </tr>
 
                           {/* Mobile Table Category Row */}
-                          <tr className="block sm:hidden border-b   bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
+                          <tr className="block sm:hidden border-b  bg-gradient-to-r from-[#8B0000] via-[#B22222] to-[#FF2400]">
                             <td className="p-3 text-center border-b border-gray-300 rounded">
                               <span className="text-sm font-medium text-white tracking-wide">
                                 {category}
@@ -722,6 +756,7 @@ const Shop = ({isStandardCrackers}) => {
               </table>
             </div>
           </div>
+        )}
        
 
         {/* {totalPages > 1 && (

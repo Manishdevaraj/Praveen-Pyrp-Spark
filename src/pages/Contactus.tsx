@@ -60,23 +60,23 @@ const Contactus = () => {
     <>
       <Helmet>
         <title>
-          Contact Ganesh Pyro Park
+          Contact Praveen PyroPark
         </title>
         <meta
           name="description"
-          content="Reach out to Ganesh Pyro Park for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
+          content="Reach out to Praveen PyroPark for orders, queries, or wholesale deals. We're happy to help with anything related to fireworks."
         />
         <meta
           name="keywords"
-          content="contact sivakasi crackers, Ganesh Pyro Park contact, fireworks supplier phone, email crackers support"
+          content="contact sivakasi crackers, Praveen PyroPark contact, fireworks supplier phone, email crackers support"
         />
-        <meta property="og:title" content="Contact Ganesh Pyro Park" />
+        <meta property="og:title" content="Contact Praveen PyroPark" />
         <meta
           property="og:description"
-          content="Have questions or want to place a bulk order? Contact Ganesh Pyro Park, your fireworks expert from Sivakasi."
+          content="Have questions or want to place a bulk order? Contact Praveen PyroPark, your fireworks expert from Sivakasi."
         />
         <meta property="og:image" content="/meta/contact-us.jpg" />
-        <meta property="og:url" content="https://fromsivakasicrackers.com/contactus" />
+        <meta property="og:url" content=" https://praveenpyropark.com/contactus" />
       </Helmet>
       <section className="bg-gray-50 min-h-screen pt-20 pb-16 px-4 md:px-10">
         {/* Header Section */}

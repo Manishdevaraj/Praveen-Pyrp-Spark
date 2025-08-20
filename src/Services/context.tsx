@@ -130,7 +130,7 @@ const [multiBrandCategories, setMultiBrandCategories] = useState<string[]>([]);
         const updates = {};
         for (const [productId, item] of Object.entries(guestCart))
            {
-          updates[`GPP/tempCart/${firebaseUser.uid}/${productId}`] = item;
+          updates[`PRP/tempCart/${firebaseUser.uid}/${productId}`] = item;
         }
 
         await update(ref(database), updates); // Push all to Firebase in one go
@@ -138,7 +138,7 @@ const [multiBrandCategories, setMultiBrandCategories] = useState<string[]>([]);
         const guestWishlist = JSON.parse(localStorage.getItem('guestWishlist') || '[]');
         // console.log(guestWishlist);
   if (guestWishlist.length > 0) {
-    const wishlistRef = ref(database, `GPP/Wishlist/${firebaseUser.uid}`);
+    const wishlistRef = ref(database, `PRP/Wishlist/${firebaseUser.uid}`);
     const snapshot = await get(wishlistRef);
     const existing = snapshot.exists() ? snapshot.val() : [];
 
@@ -171,7 +171,7 @@ useEffect(() => {
   }
 
   // ✅ For logged-in users: Sync from Firebase
-  const idsRef = ref(database, `GPP/Wishlist/${user.uid}`);
+  const idsRef = ref(database, `PRP/Wishlist/${user.uid}`);
   const unsubscribe = onValue(idsRef, (snapshot) => {
     const data = snapshot.val();
     setWishlistIds(data ?? []);
@@ -183,7 +183,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (user){
-    const cartRef = ref(database, `GPP/tempCart/${user?.uid}`);
+    const cartRef = ref(database, `PRP/tempCart/${user?.uid}`);
     const unsubscribe = onValue(cartRef, (snapshot) => {
       setCartItems(snapshot.exists() ? snapshot.val() : {});
     });
@@ -198,7 +198,7 @@ useEffect(() => {
 
   
  useEffect(() => {
-    const productsRef = ref(database, "GPP/Products");
+    const productsRef = ref(database, "PRP/Products");
     const unsubscribe = onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -216,7 +216,7 @@ useEffect(() => {
     return () => unsubscribe();
   }, []);
   useEffect(()=>{
- const TagsRef = ref(database, "GPP/GeneralMaster/Tags");
+ const TagsRef = ref(database, "PRP/GeneralMaster/Tags");
     const unsubscribe = onValue(TagsRef, (snapshot) => {
       const data = snapshot.val();
      
@@ -227,7 +227,7 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-  const CategoriesRef = ref(database, "GPP/GeneralMaster/Product Group");
+  const CategoriesRef = ref(database, "PRP/GeneralMaster/Product Group");
 
   const unsubscribe = onValue(CategoriesRef, (snapshot) => {
     const data = snapshot.val();
@@ -297,7 +297,7 @@ useEffect(() => {
         };
 
         await set(
-          ref(database, `GPP/Customers/${userCredential.user.uid}`),
+          ref(database, `PRP/Customers/${userCredential.user.uid}`),
           customerData
         );
       }
@@ -331,7 +331,7 @@ useEffect(() => {
           state: data.state,
         };
 
-      await set(ref(database, `GPP/Customers/${user.uid}`), customerData);
+      await set(ref(database, `PRP/Customers/${user.uid}`), customerData);
       toast.success("Account updated successfully!");
         setLoading(false);
     } catch (error: any) {
@@ -382,7 +382,7 @@ useEffect(() => {
     return;
   }
 
-    const idsRef = ref(database, `GPP/Wishlist/${user.uid}`);
+    const idsRef = ref(database, `PRP/Wishlist/${user.uid}`);
     const snapshot = await get(idsRef);
     let currentIds = snapshot.exists() ? snapshot.val() : [];
 
@@ -413,7 +413,7 @@ useEffect(() => {
 
     const productRef = ref(
       database,
-      `GPP/tempCart/${user.uid}/${product.productId}`
+      `PRP/tempCart/${user.uid}/${product.productId}`
     );
     const snapshot = await get(productRef);
 
@@ -455,7 +455,7 @@ const updateCartQty = async (
     return;
   }
 
-    const productRef = ref(database, `GPP/tempCart/${user.uid}/${productId}`);
+    const productRef = ref(database, `PRP/tempCart/${user.uid}/${productId}`);
   const snapshot = await get(productRef);
   // if (!snapshot.exists()) return;
 
@@ -487,7 +487,7 @@ const updateCartQty = async (
 
   const getUser = async () => {
     if (!user) return;
-    const userRef = ref(database, `GPP/Customers/${user.uid}`);
+    const userRef = ref(database, `PRP/Customers/${user.uid}`);
     const snapshot = await get(userRef);
     return snapshot.exists() ? snapshot.val() : null;
   };
@@ -584,7 +584,7 @@ async function uploadOrderImage(imageFile, orderId) {
         }
         const guestorderRef = ref(
         database,
-        `GPP/CustomerOrder/${formData.phone}/${orderId}`
+        `PRP/CustomerOrder/${formData.phone}/${orderId}`
       );
       
       const orderData = {
@@ -645,7 +645,7 @@ async function uploadOrderImage(imageFile, orderId) {
 
     const orderRef = ref(
         database,
-        `GPP/CustomerOrder/${user.uid}/${orderId}`
+        `PRP/CustomerOrder/${user.uid}/${orderId}`
       );
       if (useExistingAddress && !dbUser?.accounterName) {
         toast.error("Please update address on profile");
@@ -773,7 +773,7 @@ async function uploadOrderImage(imageFile, orderId) {
       for (const item of billProductList) {
         const productRef = ref(
           database,
-          `GPP/tempCart/${user.uid}/${item.productId}`
+          `PRP/tempCart/${user.uid}/${item.productId}`
         );
         await remove(productRef);
       }
@@ -793,34 +793,34 @@ async function uploadOrderImage(imageFile, orderId) {
 
   const getOrders = async () => {
     if (!user) return;
-    const orderRef = ref(database, `GPP/CustomerOrder/${user.uid}`);
+    const orderRef = ref(database, `PRP/CustomerOrder/${user.uid}`);
     const snapshot = await get(orderRef);
     return snapshot.exists() ? snapshot.val() : null;
   };
 
   const getBannerUrls = async () => {
-    const urlRef = ref(database, `GPP/Settings`);
+    const urlRef = ref(database, `PRP/Settings`);
     const snapshot = await get(urlRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
    const getCustomerOrders = async () => {
-    const coRef = ref(database, `GPP/CustomerOrder`);
+    const coRef = ref(database, `PRP/CustomerOrder`);
     const snapshot = await get(coRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
   const getSingleCustomerOrder = async (uid, orderid) => {
-    const coRef = ref(database, `GPP/CustomerOrder/${uid}/${orderid}`);
+    const coRef = ref(database, `PRP/CustomerOrder/${uid}/${orderid}`);
     const snapshot = await get(coRef);
     setSetting(snapshot.exists() ? snapshot.val() : null);
     // console.log(snapshot.exists() ? snapshot.val() : null)
     return snapshot.exists() ? snapshot.val() : null;
   };
   const getupdateCustomerOrders = async (uid, orderid, data) => {
-    const coRef = ref(database, `GPP/CustomerOrder/${uid}/${orderid}`);
+    const coRef = ref(database, `PRP/CustomerOrder/${uid}/${orderid}`);
     await set(coRef, data);
     toast.success("Order Updated Successfully");
     // console.log(uid)
@@ -829,7 +829,7 @@ async function uploadOrderImage(imageFile, orderId) {
     // console.log(data)
   };
   async function getSparklerProducts() {
-  const coRef = ref(database, `GPP/Products`);
+  const coRef = ref(database, `PRP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -850,7 +850,7 @@ async function uploadOrderImage(imageFile, orderId) {
 }
 
  async function getMultiBrandProducts() {
-  const coRef = ref(database, `GPP/Products`);
+  const coRef = ref(database, `PRP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -870,7 +870,7 @@ async function uploadOrderImage(imageFile, orderId) {
   }
 }
 async function getgiftProducts() {
-  const coRef = ref(database, `GPP/Products`);
+  const coRef = ref(database, `PRP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {
@@ -890,7 +890,7 @@ async function getgiftProducts() {
   }
 }
 async function getStandardGiftProducts() {
-  const coRef = ref(database, `GPP/Products`);
+  const coRef = ref(database, `PRP/Products`);
   const snapshot = await get(coRef);
 
   if (snapshot.exists()) {

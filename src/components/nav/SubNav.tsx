@@ -74,7 +74,7 @@ const SubNav = () => {
     className="flex items-center gap-2 cursor-pointer group transition-transform duration-300"
     onClick={() => navigate('/shop')} 
       >
-  <p className="flex items-center gap-2 bg-gradient-to-r from-[#000000] via-[#ff0000] to-[#ffd700] text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
+  <p className="flex items-center gap-2 bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400 text-white px-5 py-2 rounded-full shadow-md font-semibold group-hover:scale-105 transition-all duration-300">
     <FaShoppingBag className="text-white text-sm group-hover:rotate-6 transition-transform duration-300" />
     Shop Now
   </p>
@@ -88,7 +88,7 @@ const SubNav = () => {
         <p className="font-semibold cursor-pointer" onClick={() => navigate('/Aboutus')}>About Us</p>
         <p className="font-semibold cursor-pointer" onClick={() => navigate('/Contactus')}>Contact Us</p>
         {/* <p className="font-semibold cursor-pointer" onClick={() => navigate('/termsandconditions')}>T&C</p> */}
-        {/* <Button onClick={downloadPriceList} className="bg-gradient-to-r from-yellow-400 to-red-500 text-white">Download Price List</Button> */}
+        <Button onClick={downloadPriceList} className="bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400 text-white">Download Price List</Button>
 
         {/* <Popover>
           <PopoverTrigger asChild>
@@ -176,7 +176,7 @@ const SubNav = () => {
     <DropdownMenuItem onClick={() => navigate('/aboutus')}>About Us</DropdownMenuItem>
     <DropdownMenuItem onClick={() => navigate('/contactus')}>Contact Us</DropdownMenuItem>
     <DropdownMenuItem onClick={() => navigate('/termsandconditions')}>Terms & Conditions</DropdownMenuItem>
-    {/* <DropdownMenuItem onClick={downloadPriceList}>Download Price List</DropdownMenuItem> */}
+    <DropdownMenuItem onClick={downloadPriceList}>Download Price List</DropdownMenuItem>
     {/* <DropdownMenuSub>
       <DropdownMenuSubTrigger>Download Price List</DropdownMenuSubTrigger>
         <DropdownMenuSubContent className="w-48 rounded-md bg-white shadow-lg border p-2 space-y-1">

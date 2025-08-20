@@ -198,7 +198,7 @@ const App = () => {
           ref={whatsappRef}
           onMouseDown={handleMouseDown}
           onClick={openWhatsApp}
-          className="bg-gradient-to-r from-[#000000] via-[#ff0000] to-[#ffd700]  text-white p-3 rounded-full shadow-lg cursor-move"
+          className="bg-gradient-to-r from-red-900 via-amber-600 to-yellow-400  text-white p-3 rounded-full shadow-lg cursor-move"
         >
           <FaWhatsapp size={28} />
         </div>
