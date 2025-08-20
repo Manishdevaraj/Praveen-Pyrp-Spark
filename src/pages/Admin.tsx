@@ -545,10 +545,13 @@ const updateOrder=async()=>{
   
     setToggle(!toggle);
   }
+   const trref=useRef();
+ const piref=useRef();
   if(!setting)
 {
   return
 }
+
 
   return (
     <>
@@ -721,11 +724,13 @@ const updateOrder=async()=>{
                  <img src={selectedOrder.upiimage} alt="image" /></>}
                 <div className="mt-4">
                   <label className="block font-semibold mb-1">Transport Copy Image</label>
+                  <Button onClick={() => trref.current.click()}>Upload Image</Button>
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => handleImageChange("image", e.target.files?.[0])}
-                    className="border p-2 rounded w-full"
+                    className="border p-2 rounded w-full hidden"
+                    ref={trref}
                   />
 
                   {/* Preview newly selected image */}
@@ -749,11 +754,13 @@ const updateOrder=async()=>{
 
                 <div className="mt-4">
                   <label className="block font-semibold mb-1">Packed Items Photo</label>
+                  <Button onClick={() => piref.current.click()}>Upload Image</Button>
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => handleImageChange("packedItemsPhoto", e.target.files?.[0])}
-                    className="border p-2 rounded w-full"
+                    className="border p-2 rounded w-full hidden"
+                    ref={piref} 
                   />
 
                   {/* Preview newly selected image */}

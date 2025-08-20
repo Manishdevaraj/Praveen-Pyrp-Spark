@@ -10,7 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input"; // Assuming you have this component
 import { useFirebase } from "@/Services/context";
-import React,{ useEffect, useState } from "react";
+import React,{ useEffect, useRef, useState } from "react";
 import { storage } from "@/Services/Firebase.config";
 import { deleteObject, getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { push, ref as dbRef, set, ref, get, remove, onValue, update  } from "firebase/database";
@@ -1297,6 +1297,12 @@ export const EditSettings = () => {
   const [settings, setSettings] = useState<any>(null);
   const [formData, setFormData] = useState<any>({});
 
+  const pdfref=useRef();
+  const DBref=useRef();
+  const MBref=useRef();
+
+
+
   useEffect(() => {
     const getSetting = async () => {
       const settingRef = dbRef(database, `PRP/Settings`);
@@ -1505,9 +1511,12 @@ return (
   {/* PDF UPLOAD */}
   <div className="bg-white p-4 rounded-lg shadow-sm border">
     <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">PDF Upload</h2>
+    <Button onClick={() => pdfref.current.click()}>Upload PDF</Button>
     <input
       type="file"
       accept="application/pdf"
+      className="border p-2 rounded w-full hidden"
+      ref={pdfref}
       onChange={async (e) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -1529,8 +1538,11 @@ return (
   {/* DESKTOP BANNERS */}
   <div className="bg-white p-4 rounded-lg shadow-sm border">
     <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Desktop Banners</h2>
+    <Button onClick={() => DBref.current.click()}>Upload Desktop Banner Image</Button>
     <input
       type="file"
+      className="border p-2 rounded w-full hidden"
+      ref={DBref}
       multiple
       accept="image/*"
       onChange={(e) => {
@@ -1556,10 +1568,13 @@ return (
   {/* MOBILE BANNERS */}
   <div className="bg-white p-4 rounded-lg shadow-sm border">
     <h2 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-1">Mobile Banners</h2>
+    <Button onClick={() => MBref.current.click()}>Upload Mobile Banner Image</Button>
     <input
       type="file"
       multiple
       accept="image/*"
+      className="border p-2 rounded w-full hidden"
+      ref={MBref}
       onChange={(e) => {
         if (e.target.files) handleBannerUpload(e.target.files, "mobile");
       }}
