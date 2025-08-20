@@ -132,7 +132,7 @@ const App = () => {
   };
 
   const openShopListView = () => {
-    navigate("/shop");
+    navigate("/shop?view=list");
   };
 
   const openWhatsApp = () => {

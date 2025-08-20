@@ -85,7 +85,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Company</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="/shop?view=list" className="hover:underline">
+              <a href="/shop" className="hover:underline">
                 Shop Now
               </a>
             </li>
